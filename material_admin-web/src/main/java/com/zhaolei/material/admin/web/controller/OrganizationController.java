@@ -23,9 +23,19 @@ public class OrganizationController {
 
     @RequestMapping(value="/getById")
     public  Response getById(int id)  {
-        int a = 0;
-        int i = 1/a;
-        return Response.success(organizationService.selectById(id));
+        Long time = System.currentTimeMillis();
+        System.out.println(time);
+        Response res = Response.success(organizationService.selectById(id));
+        System.out.println(System.currentTimeMillis()-time);
+        return res;
+    }
+    @RequestMapping(value="/getByName")
+    public  Response getByName(String name)  {
+        Long time = System.currentTimeMillis();
+        System.out.println(time);
+        Response res = Response.success(organizationService.selectByName(name));
+        System.out.println(System.currentTimeMillis()-time);
+        return res;
     }
 
 }

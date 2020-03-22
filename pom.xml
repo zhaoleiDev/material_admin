@@ -13,9 +13,12 @@
         <module>material_admin-domain</module>
         <module>material_admin-web</module>
         <module>material_admin-dao</module>
+        <module>material_admin-common</module>
     </modules>
 
     <properties>
+        <!--指定编码方式，让其与平台无关-->
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <spring-version>5.2.1.RELEASE</spring-version>
         <mybatis-version>3.5.2</mybatis-version>
         <mybatis-spring-version>2.0.2</mybatis-spring-version>
@@ -24,6 +27,8 @@
         <druid-version>1.1.2</druid-version>
         <jackson-version>2.10.1</jackson-version>
         <servlet-version>4.0.1</servlet-version>
+        <jedis-version>3.2.0</jedis-version>
+        <fastjson-version>1.2.67</fastjson-version>
     </properties>
 
     <dependencyManagement>
@@ -75,6 +80,14 @@
                 <version>${druid-version}</version>
             </dependency>
 
+            <!--jedis-->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis-version}</version>
+            </dependency>
+
+
             <!--servlet-->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -111,6 +124,14 @@
                 <artifactId>log4j-slf4j-impl</artifactId>
                 <version>2.12.1</version>
             </dependency>
+
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson-version}</version>
+            </dependency>
+
 
 
         </dependencies>

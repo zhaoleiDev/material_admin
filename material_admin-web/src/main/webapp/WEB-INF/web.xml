@@ -5,7 +5,8 @@
 <web-app>
   <display-name>物资管理系统</display-name>
 
-  <!--字符集编码过滤器，指定为utf8,不指定的话汉字会乱码-->
+
+  <!--字符集编码过滤器，指定为utf8,不指定的话汉字可能会乱码-->
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -27,6 +28,23 @@
     <url-pattern>/</url-pattern>
   </filter-mapping>
 
+    <!-- druid监控 -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <!-- 用户名 -->
+            <param-name>loginUsername</param-name>
+            <param-value>zhaolei</param-value>
+        </init-param>
+        <init-param>
+            <!-- 密码 -->
+            <param-name>loginPassword</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+    </servlet>
+
+
   <!--注册前端控制器，并关联sping mvc配置文件-->
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name>
@@ -37,11 +55,18 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+    <!--前端控制器映射-->
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <!--匹配所有前端请求不包括.jsp./*包括.jsp-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>dispatcherServlet</servlet-name>
-    <!--匹配所有前端请求不包括.jsp./*包括.jsp-->
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
+    <!--druid监控映射-->
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

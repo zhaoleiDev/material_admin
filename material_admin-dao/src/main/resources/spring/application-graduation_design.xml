@@ -13,13 +13,15 @@
         <property name="url" value="${graduation.design.url}"/>
         <property name="username" value="${graduation.design.user.name}"/>
         <property name="password" value="${graduation.design.password}"/>
+        <!--用于监控-->
+        <property name="filters" value="stat"/>
     </bean>
 
 
     <!--注册SqlSessionFactoryBean-->
     <bean id="graduation_sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!--mybatis配置文件，mybatis的很多属性不能在mapper.xml来配置-->
-        <property name="configLocation" value="classpath*:mybatis/graduation_design.xml"/>
+        <property name="configLocation" value="classpath:mybatis/graduation_design.xml"/>
         <!--数据源-->
         <property name="dataSource" ref="dataSource" />
         <!--加载对应的mapper.xml文件-->

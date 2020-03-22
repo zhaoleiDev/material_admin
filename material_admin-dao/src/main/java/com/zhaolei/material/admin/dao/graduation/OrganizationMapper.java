@@ -2,6 +2,7 @@ package com.zhaolei.material.admin.dao.graduation;
 
 import com.zhaolei.material.admin.dao.base.ISqlMapper;
 import com.zhaolei.material.admin.domain.dao.OrganizationDO;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author ZHAOLEI
@@ -54,4 +55,6 @@ public interface OrganizationMapper extends ISqlMapper {
      * @mbg.generated Wed Mar 18 12:20:33 CST 2020
      */
     int updateByPrimaryKey(OrganizationDO record);
+
+    OrganizationDO selectByName(@Param("principalName") String principalName);
 }

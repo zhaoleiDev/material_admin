@@ -28,5 +28,6 @@ public interface OrganizationService {
     boolean delete(int id);
 
     OrganizationDO selectById(int id);
+    OrganizationDO selectByName(String name);
 
 }
