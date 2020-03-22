@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaolei.material.admin.dao.graduation.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+    <result column="id"  property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    <result column="org_name" property="orgName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_name" property="principalName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_st_num" property="principalStNum" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_phone_num" property="principalPhoneNum" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_college" property="principalCollege" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="token" property="token" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result column="status_info" property="statusInfo" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+
+    <!--不建议使用下面这种方式，下面这种需要全部字段都查询才能匹配到-->
+    <!--<constructor>
+    <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <arg column="org_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="principal_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="principal_st_num" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="principal_phone_num" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="principal_college" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="token" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <arg column="status_info" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+  </constructor>-->
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, org_name, principal_name, principal_st_num, principal_phone_num, principal_college, 
+    token, create_time, update_time,status_info
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from organization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+    insert into organization (org_name, principal_name,
+      principal_st_num, principal_phone_num, principal_college, 
+      token, create_time, update_time
+      )
+    values (#{orgName,jdbcType=VARCHAR}, #{principalName,jdbcType=VARCHAR},
+      #{principalStNum,jdbcType=VARCHAR}, #{principalPhoneNum,jdbcType=VARCHAR}, #{principalCollege,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, now(), now()
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="principalName != null">
+        principal_name,
+      </if>
+      <if test="principalStNum != null">
+        principal_st_num,
+      </if>
+      <if test="principalPhoneNum != null">
+        principal_phone_num,
+      </if>
+      <if test="principalCollege != null">
+        principal_college,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      create_time,
+      update_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalName != null">
+        #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalStNum != null">
+        #{principalStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhoneNum != null">
+        #{principalPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="principalCollege != null">
+        #{principalCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      now(),
+      now()
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+    update organization
+    <set>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalName != null">
+        principal_name = #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalStNum != null">
+        principal_st_num = #{principalStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhoneNum != null">
+        principal_phone_num = #{principalPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="principalCollege != null">
+        principal_college = #{principalCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="statusInfo != null">
+        status_info = #{statusInfo,jdbcType=Integer},
+      </if>
+      update_time=now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+    update organization
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      principal_name = #{principalName,jdbcType=VARCHAR},
+      principal_st_num = #{principalStNum,jdbcType=VARCHAR},
+      principal_phone_num = #{principalPhoneNum,jdbcType=VARCHAR},
+      principal_college = #{principalCollege,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

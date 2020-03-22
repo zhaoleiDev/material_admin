@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+   <!-- 配置数据源，使用阿里druid连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${graduation.design.driverClassName}"/>
+        <property name="url" value="${graduation.design.url}"/>
+        <property name="username" value="${graduation.design.user.name}"/>
+        <property name="password" value="${graduation.design.password}"/>
+    </bean>
+
+
+    <!--注册SqlSessionFactoryBean-->
+    <bean id="graduation_sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--mybatis配置文件，mybatis的很多属性不能在mapper.xml来配置-->
+        <property name="configLocation" value="classpath*:mybatis/graduation_design.xml"/>
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource" />
+        <!--加载对应的mapper.xml文件-->
+        <property name="mapperLocations" value="classpath*:sqlmap/graduation_design/*.xml"/>
+    </bean>
+
+
+    <!--注册映射器，创建对应的mapper对象并将其注入spring容器中-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--mapper对应的包-->
+        <property name="basePackage" value="com.zhaolei.material.admin.dao.graduation" />
+        <!--对应的sqlSessionFactoryBean-->
+        <property name="sqlSessionFactoryBeanName" value="graduation_sqlSessionFactory"/>
+        <!--标记mapper接口-->
+        <property name="markerInterface" value="com.zhaolei.material.admin.dao.base.ISqlMapper"/>
+    </bean>
+
+    <!--注册事务管理器-->
+    <bean id="graduation_transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--开启事务注解驱动-->
+    <tx:annotation-driven  transaction-manager="graduation_transactionManager"/>
+</beans>

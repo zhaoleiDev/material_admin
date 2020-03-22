@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaolei.material.admin.dao.graduation.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zhaolei.material.admin.domain.dao.UserDO">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="organization" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="organization_token" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="student_num" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phone_num" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="photo_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status_info" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, organization, organization_token, student_num, user_password, user_name, phone_num, 
+    photo_info
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.zhaolei.material.admin.domain.dao.UserDO">
+    insert into m_user (organization, organization_token,
+      student_num, user_password, user_name, 
+      phone_num, photo_info)
+    values (#{organization,jdbcType=VARCHAR}, #{organizationToken,jdbcType=VARCHAR},
+      #{studentNum,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{phoneNum,jdbcType=VARCHAR}, #{photoInfo,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.zhaolei.material.admin.domain.dao.UserDO">
+    insert into m_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="organizationToken != null">
+        organization_token,
+      </if>
+      <if test="studentNum != null">
+        student_num,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="photoInfo != null">
+        photo_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationToken != null">
+        #{organizationToken,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNum != null">
+        #{studentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="photoInfo != null">
+        #{photoInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaolei.material.admin.domain.dao.UserDO">
+    update m_user
+    <set>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationToken != null">
+        organization_token = #{organizationToken,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNum != null">
+        student_num = #{studentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="photoInfo != null">
+        photo_info = #{photoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="statusInfo != null">
+        status_info = #{statusInfo,jdbcType=Integer},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.zhaolei.material.admin.domain.dao.UserDO">
+    update m_user
+    set organization = #{organization,jdbcType=VARCHAR},
+      organization_token = #{organizationToken,jdbcType=VARCHAR},
+      student_num = #{studentNum,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      photo_info = #{photoInfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
