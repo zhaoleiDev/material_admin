@@ -1,16 +1,16 @@
-package com.zhaolei.material.admin.common;
+package com.zhaolei.material.admin.common.redis;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import redis.clients.jedis.Jedis;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * @author ZHAOLEI
  */
-@Service
+@Component
 public class RedisCli {
+
     /**
      * 服务器地址
      */
@@ -32,19 +32,16 @@ public class RedisCli {
     @Value("${ali.redis.maxIdle}")
     private int maxIdle;
 
-    public Jedis getJedis() {
-        JedisPoolConfig config = new JedisPoolConfig();
-        // 最大连接数
-        config.setMaxTotal(maxTotal);
-        // 最大连接空闲数
-        config.setMaxIdle(maxIdle);
-        JedisPool jedisPool = new JedisPool(config, host, port);
+    public JedisPool getJedisPool(){
         try{
-
-            return jedisPool.getResource();
+            JedisPoolConfig config = new JedisPoolConfig();
+            // 最大连接数
+            config.setMaxTotal(maxTotal);
+            // 最大连接空闲数
+            config.setMaxIdle(maxIdle);
+            return new JedisPool(config, host, port);
         }catch(Exception e){
-            e.printStackTrace();
-            return null;
+            throw new RedisRuntimeException("获取jedispool失败",e);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.zhaolei.material.admin.web.handler;
 
+import com.zhaolei.material.admin.common.redis.RedisRuntimeException;
 import com.zhaolei.material.admin.domain.base.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ public class MyExceptionHandler {
         return Response.success();
 
     }
+
 
     @ExceptionHandler
     public Response unknownException(Exception e){

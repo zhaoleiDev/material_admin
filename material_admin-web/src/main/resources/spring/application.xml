@@ -21,7 +21,6 @@
     <!--加载properties文件
     spring容器默认只维护一个property-placeholder对象，如果有多个地方使用该配置的话只会加载一个
     为了解决这个问题，需要ignore-unresolvable="true"
-    项目中的properties文件统一放在了web路径下，所以统一在这个地方加载
     -->
     <context:property-placeholder  location="classpath*:config/*.properties" ignore-unresolvable="true"/>
 

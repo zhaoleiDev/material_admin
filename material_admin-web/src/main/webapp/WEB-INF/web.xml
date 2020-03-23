@@ -53,6 +53,8 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath*:spring/application-servlet.xml</param-value>
     </init-param>
+      <!--当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet。
+      当值小于0或者没有指定时，则表示容器在该servlet被选择时才会去加载。-->
     <load-on-startup>1</load-on-startup>
   </servlet>
     <!--前端控制器映射-->
