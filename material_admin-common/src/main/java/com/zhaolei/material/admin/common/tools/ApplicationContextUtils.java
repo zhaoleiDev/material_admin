@@ -1,4 +1,4 @@
-package com.zhaolei.material.admin.common.context;
+package com.zhaolei.material.admin.common.tools;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

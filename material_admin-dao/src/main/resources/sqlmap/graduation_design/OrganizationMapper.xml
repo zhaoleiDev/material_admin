@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhaolei.material.admin.dao.graduation.OrganizationMapper">
-  <resultMap id="BaseResultMap" type="com.zhaolei.material.admin.domain.dao.OrganizationDO">
-    <result column="id"  property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-    <result column="org_name" property="orgName" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <result column="principal_name" property="principalName" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <result column="principal_st_num" property="principalStNum" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <result column="principal_phone_num" property="principalPhoneNum" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <result column="principal_college" property="principalCollege" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <result column="token" property="token" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-    <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-    <result column="status_info" property="statusInfo" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-
+  <resultMap id="BaseResultMap" type="organizationDO">
     <!--不建议使用下面这种方式，下面这种需要全部字段都查询才能匹配到-->
-    <!--<constructor>
+    <constructor>
     <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     <arg column="org_name" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="principal_name" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -25,7 +14,17 @@
     <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     <arg column="status_info" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-  </constructor>-->
+  </constructor>
+    <result column="id"  property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    <result column="org_name" property="orgName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_name" property="principalName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_st_num" property="principalStNum" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_phone_num" property="principalPhoneNum" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="principal_college" property="principalCollege" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="token" property="token" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result column="status_info" property="statusInfo" javaType="java.lang.Integer" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, org_name, principal_name, principal_st_num, principal_phone_num, principal_college, 
@@ -44,7 +43,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+  <insert id="insert" parameterType="organizationDO">
     insert into organization (org_name, principal_name,
       principal_st_num, principal_phone_num, principal_college, 
       token, create_time, update_time
@@ -55,7 +54,7 @@
       )
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+  <insert id="insertSelective" parameterType="organizationDO">
     insert into organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orgName != null">
@@ -103,7 +102,7 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+  <update id="updateByPrimaryKeySelective" parameterType="organizationDO">
     update organization
     <set>
       <if test="orgName != null">
@@ -132,7 +131,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zhaolei.material.admin.domain.dao.OrganizationDO">
+  <update id="updateByPrimaryKey" parameterType="organizationDO">
     update organization
     set org_name = #{orgName,jdbcType=VARCHAR},
       principal_name = #{principalName,jdbcType=VARCHAR},
@@ -144,10 +143,10 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByOrgName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from organization
-    where principal_name = #{principalName,jdbcType=VARCHAR}
+    where org_name = #{orgName,jdbcType=VARCHAR}
   </select>
 </mapper>

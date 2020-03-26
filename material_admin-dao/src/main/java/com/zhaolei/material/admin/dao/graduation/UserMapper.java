@@ -54,4 +54,11 @@ public interface UserMapper extends ISqlMapper {
      * @mbg.generated Wed Mar 18 11:47:06 CST 2020
      */
     int updateByPrimaryKey(UserDO record);
+
+    /**
+     * 根据学号查询用户信息
+     * @param stNum
+     * @return
+     */
+    UserDO selectByStNum(String stNum);
 }

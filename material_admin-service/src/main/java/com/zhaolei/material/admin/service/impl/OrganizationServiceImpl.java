@@ -19,38 +19,21 @@ public class OrganizationServiceImpl implements OrganizationService {
     private OrganizationMapper organizationMapper;
 
     public boolean registered(OrganizationDO organizationDO) {
-        return organizationMapper.insertSelective(organizationDO)>0;
+        return organizationMapper.insert(organizationDO)>0;
     }
 
     public boolean update(OrganizationDO organizationDO) {
-        return false;
+        return organizationMapper.updateByPrimaryKeySelective(organizationDO)>0;
     }
 
     public boolean delete(int id) {
-        return organizationMapper.deleteByPrimaryKey(id)>0;
+        OrganizationDO organizationDO = new OrganizationDO();
+        organizationDO.setId(id);
+        //将状态设置为已删除状态
+        organizationDO.setStatusInfo(0);
+        return organizationMapper.updateByPrimaryKeySelective(organizationDO)>0;
     }
 
-    public OrganizationDO selectById(int id) {
-        String str = RedisUtils.get(id+"");
-        if(str == null){
-            OrganizationDO organizationDO = organizationMapper.selectByPrimaryKey(id);
-            String json = JSON.toJSONString(organizationDO);
-            RedisUtils.set(id+"",json);
-            return organizationDO;
-        }
-        return JSON.parseObject(str,OrganizationDO.class);
-        /*return organizationMapper.selectByPrimaryKey(id);*/
-    }
 
-    public OrganizationDO selectByName(String name) {
-        String str = RedisUtils.get(name);
-        if(str == null){
-            OrganizationDO organizationDO = organizationMapper.selectByName(name);
-            String json = JSON.toJSONString(organizationDO);
-            RedisUtils.set(name,json);
-            return organizationDO;
-        }
-        return JSON.parseObject(str,OrganizationDO.class);
-        /*return organizationMapper.selectByName(name);*/
-    }
+
 }

@@ -21,13 +21,10 @@ public interface OrganizationService {
     boolean update(OrganizationDO organizationDO);
 
     /**
-     * 删除
+     * 删除,逻辑删除
      * @param id 主键id
      * @return 更新成功返回true,不成功false
      */
     boolean delete(int id);
-
-    OrganizationDO selectById(int id);
-    OrganizationDO selectByName(String name);
 
 }

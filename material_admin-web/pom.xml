@@ -43,20 +43,6 @@
         </dependency>
 
 
-        <!--jackson用来支持json输入输出-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-
-
-
-
 
         <!--测试-->
         <dependency>

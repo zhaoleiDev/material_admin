@@ -56,5 +56,11 @@ public interface OrganizationMapper extends ISqlMapper {
      */
     int updateByPrimaryKey(OrganizationDO record);
 
-    OrganizationDO selectByName(@Param("principalName") String principalName);
+    /**
+     * 根据组织名称查询组织信息
+     * @param organizationName
+     * @return
+     */
+
+    OrganizationDO selectByOrgName(@Param("orgName") String organizationName);
 }

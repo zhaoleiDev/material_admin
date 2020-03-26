@@ -1,7 +1,8 @@
 package com.zhaolei.material.admin.web.handler;
 
-import com.zhaolei.material.admin.common.redis.RedisRuntimeException;
 import com.zhaolei.material.admin.domain.base.Response;
+import com.zhaolei.material.admin.domain.base.ResponseEnum;
+import com.zhaolei.material.admin.domain.exception.NotLoginRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,10 +18,8 @@ public class MyExceptionHandler {
     private static Logger log = LoggerFactory.getLogger(MyExceptionHandler.class);
 
     @ExceptionHandler
-    public Response arithmeticException(ArithmeticException e){
-        log.error("发生异常1",e);
-        return Response.success();
-
+    public Response notLoginException(NotLoginRuntimeException e){
+        return Response.addInfo(ResponseEnum.NOT_LOGIN);
     }
 
 

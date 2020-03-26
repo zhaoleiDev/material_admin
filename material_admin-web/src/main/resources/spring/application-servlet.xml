@@ -30,5 +30,17 @@
     则自动注册MappingJackson2HttpMessageConverter，从而支持json的输入输出 输出。-->
     <mvc:annotation-driven/>
 
+    <!--拦截器可以针对特定的处理器映射器，而直接使用下面这个标签是全局的拦截器，对所有处理器映射器都生效-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--注意所有路径是/**-->
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/registered"/>
+            <mvc:exclude-mapping path="/org/"/>
+            <bean class="com.zhaolei.material.admin.web.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 
 </beans>

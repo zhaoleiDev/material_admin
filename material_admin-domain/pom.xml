@@ -11,5 +11,25 @@
 
     <artifactId>material_admin-domain</artifactId>
 
+    <dependencies>
+        <!--jackson用来支持json输入输出
+        下沉到domain是因为vo需要用到jackson相关注解
+        -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

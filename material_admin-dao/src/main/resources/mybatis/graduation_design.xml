@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="java.util.List" alias="list"/>
+        <typeAlias type="com.zhaolei.material.admin.domain.dao.OrganizationDO" alias="organizationDO"/>
+        <typeAlias type="com.zhaolei.material.admin.domain.dao.UserDO" alias="userDO"/>
     </typeAliases>
 
 </configuration>

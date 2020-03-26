@@ -1,6 +1,6 @@
 package com.zhaolei.material.admin.common.redis;
 
-import com.zhaolei.material.admin.common.context.ApplicationContextUtils;
+import com.zhaolei.material.admin.common.tools.ApplicationContextUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -32,8 +32,12 @@ public class RedisUtils {
         return getJedis().set(key,value);
     }
 
+
     public static String set(byte[] key,byte[] value){
         return getJedis().set(key,value);
+    }
+    public static String set(String key,String value,Integer ex){
+        return getJedis().setex(key,ex,value);
     }
 
 

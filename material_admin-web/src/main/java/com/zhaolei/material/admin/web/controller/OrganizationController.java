@@ -1,10 +1,15 @@
 package com.zhaolei.material.admin.web.controller;
 
+import com.zhaolei.material.admin.common.tools.DigestUtils;
 import com.zhaolei.material.admin.domain.base.Response;
 import com.zhaolei.material.admin.domain.dao.OrganizationDO;
+import com.zhaolei.material.admin.domain.vo.OrganizationVO;
 import com.zhaolei.material.admin.service.OrganizationService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,21 +26,16 @@ public class OrganizationController {
     @Autowired
     private OrganizationService organizationService;
 
-    @RequestMapping(value="/getById")
-    public  Response getById(int id)  {
-        Long time = System.currentTimeMillis();
-        System.out.println(time);
-        Response res = Response.success(organizationService.selectById(id));
-        System.out.println(System.currentTimeMillis()-time);
-        return res;
+    @PostMapping("/registered")
+    public Response registered(@RequestBody OrganizationVO organizationVO){
+        OrganizationDO organizationDO = new OrganizationDO();
+        BeanUtils.copyProperties(organizationVO,organizationDO);
+        String token = DigestUtils.md5(organizationDO.getOrgName());
+        organizationDO.setToken(token);
+        organizationService.registered(organizationDO);
+        return Response.success(token);
     }
-    @RequestMapping(value="/getByName")
-    public  Response getByName(String name)  {
-        Long time = System.currentTimeMillis();
-        System.out.println(time);
-        Response res = Response.success(organizationService.selectByName(name));
-        System.out.println(System.currentTimeMillis()-time);
-        return res;
-    }
+
+
 
 }
