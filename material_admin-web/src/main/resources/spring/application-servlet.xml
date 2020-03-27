@@ -37,7 +37,7 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/registered"/>
-            <mvc:exclude-mapping path="/org/"/>
+            <mvc:exclude-mapping path="/org/*"/>
             <bean class="com.zhaolei.material.admin.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
