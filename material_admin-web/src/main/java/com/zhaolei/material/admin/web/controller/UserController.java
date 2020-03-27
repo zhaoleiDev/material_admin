@@ -8,6 +8,7 @@ import com.zhaolei.material.admin.domain.base.ResponseEnum;
 import com.zhaolei.material.admin.domain.dao.UserDO;
 import com.zhaolei.material.admin.domain.vo.UserVO;
 import com.zhaolei.material.admin.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @ResponseBody
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
     @Autowired
     private UserService userService;
@@ -31,7 +33,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Response login(@RequestParam("stNum") String stNum, @RequestParam("pwd")String password, HttpServletRequest request, HttpServletResponse response){
-
+        log.info("访问登录接口");
         UserDO userDo = userService.getUerByStNum(stNum);
         if(userDo == null){
             return Response.addInfo(ResponseEnum.NOT_REGISTERED);

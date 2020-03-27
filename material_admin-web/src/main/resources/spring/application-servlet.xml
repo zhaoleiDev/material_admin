@@ -34,7 +34,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <!--注意所有路径是/**-->
-            <mvc:mapping path="/**"/>
+            <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/org/*"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/registered"/>
             <mvc:exclude-mapping path="/org/*"/>
