@@ -31,6 +31,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Response login(@RequestParam("stNum") String stNum, @RequestParam("pwd")String password, HttpServletRequest request, HttpServletResponse response){
+
         UserDO userDo = userService.getUerByStNum(stNum);
         if(userDo == null){
             return Response.addInfo(ResponseEnum.NOT_REGISTERED);

@@ -2,11 +2,14 @@ package com.zhaolei.material.admin.common.tools;
 
 import java.security.MessageDigest;
 
+/**
+ * @author ZHAOLEI
+ */
 public class DigestUtils {
     private static final String SLAT = "zl_material";
     private static final String MD5 = "MD5";
     private static final String SHA = "SHA";
-    private static final char[] HEX_ARRY = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'};
+    private static final char[] HEX_ARRAY = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'};
 
     public static String md5(String str){
         return digest(str,MD5);
@@ -39,7 +42,7 @@ public class DigestUtils {
             int low = b & 15;
             //高四位的值
             int hig = (b >> 4) & 15;
-            bl.append(HEX_ARRY[low]).append(HEX_ARRY[hig]);
+            bl.append(HEX_ARRAY[low]).append(HEX_ARRAY[hig]);
         }
         return bl;
     }
