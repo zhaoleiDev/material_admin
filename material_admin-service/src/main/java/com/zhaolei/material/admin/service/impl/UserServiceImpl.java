@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private OrganizationMapper organizationMapper;
 
+    @Override
     public ServiceResponse registered(UserDO userDO) {
         if(userDO.getOrganization() == null || userDO.getOrganizationToken() == null){
             return ServiceResponse.addInfo(ResponseEnum.ERROR_PARAM);
@@ -38,10 +39,12 @@ public class UserServiceImpl implements UserService {
         return ServiceResponse.addInfo(ResponseEnum.SUCCESS);
     }
 
+    @Override
     public boolean updateById(UserDO userDo) {
         return userMapper.updateByPrimaryKey(userDo)>0;
     }
 
+    @Override
     public UserDO getUerByStNum(String stNum) {
         String jsonStr = RedisUtils.get(stNum);
         if(jsonStr == null){

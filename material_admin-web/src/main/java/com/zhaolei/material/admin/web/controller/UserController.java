@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * @author ZHAOLEI
@@ -33,8 +34,9 @@ public class UserController {
 
     @RequestMapping("/login")
     public Response login(@RequestParam("stNum") String stNum, @RequestParam("pwd")String password, HttpServletRequest request, HttpServletResponse response){
-        log.info("访问登录接口");
+        long time1 = System.currentTimeMillis();
         UserDO userDo = userService.getUerByStNum(stNum);
+        log.info("查询数据库,耗时:{}",System.currentTimeMillis()-time1);
         if(userDo == null){
             return Response.addInfo(ResponseEnum.NOT_REGISTERED);
         }
@@ -46,6 +48,7 @@ public class UserController {
         Cookie user = CookieUtils.createCookie(COOKIE_NAME_USER,stNum,TimeUtils.ONE_DAY,"/");
         response.addCookie(loginToken);
         response.addCookie(user);
+        log.info("login方法返回,耗时:{}",System.currentTimeMillis()-time1);
         return Response.success();
     }
 

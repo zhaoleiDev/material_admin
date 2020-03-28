@@ -102,12 +102,9 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="organizationDO">
+  <update id="updateByOrgNameSelective" parameterType="organizationDO">
     update organization
     <set>
-      <if test="orgName != null">
-        org_name = #{orgName,jdbcType=VARCHAR},
-      </if>
       <if test="principalName != null">
         principal_name = #{principalName,jdbcType=VARCHAR},
       </if>
@@ -124,11 +121,11 @@
         token = #{token,jdbcType=VARCHAR},
       </if>
       <if test="statusInfo != null">
-        status_info = #{statusInfo,jdbcType=Integer},
+        status_info = #{statusInfo,jdbcType=INTEGER},
       </if>
       update_time=now()
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where org_name = #{orgName,jdbcType=VARCHAR}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="organizationDO">
@@ -148,5 +145,8 @@
     <include refid="Base_Column_List" />
     from organization
     where org_name = #{orgName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllOrgName" resultType="string">
+    select org_name from organization where status_info=1
   </select>
 </mapper>

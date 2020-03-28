@@ -2,6 +2,8 @@ package com.zhaolei.material.admin.service;
 
 import com.zhaolei.material.admin.domain.dao.OrganizationDO;
 
+import java.util.List;
+
 /**
  * @author ZHAOLEI
  */
@@ -18,13 +20,19 @@ public interface OrganizationService {
      * @param organizationDO 入参
      * @return 更新成功返回true,不成功false
      */
-    boolean update(OrganizationDO organizationDO);
+    boolean updateByOrgName(OrganizationDO organizationDO);
 
     /**
      * 删除,逻辑删除
-     * @param id 主键id
+     * @param orgName 组织名称
      * @return 更新成功返回true,不成功false
      */
-    boolean delete(int id);
+    boolean deleteByOrgName(String orgName);
+
+    /**
+     * 获取所有组织的名称
+     * @return 组织名称
+     */
+    List<String> getAllOrgName();
 
 }

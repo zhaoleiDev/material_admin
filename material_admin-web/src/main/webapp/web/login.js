@@ -1,10 +1,22 @@
 function login(){
-    alert("调用");
-    /*$.get("/user/login?stNum=222016333210145&pwd=qqlove",function(data,status){
-        window.alert(status);
-        window.location.reload();
-        /!*console.log(data+"=="+status);
-        window.alert(data+"=="+status);*!/
-    });*/
-
+    var stNum = $("#stNum").val();
+    var pwd = $("#pwd").val();
+    $.ajax({
+        type:"POST",
+        url:"/user/login",
+        data:"stNum="+stNum+"&pwd="+pwd,
+        success:function(data){
+            if(data.code === 410){
+                window.location.href = "registered.html";
+            }else if(data.code === 200){
+                window.location.href = "total.html";
+            }else{
+                alert(data.msg);
+            }
+        },
+        error:function(xhr){
+            console.log(JSON.stringify(xhr));
+            alert("程序错误");
+        }
+    });
 }

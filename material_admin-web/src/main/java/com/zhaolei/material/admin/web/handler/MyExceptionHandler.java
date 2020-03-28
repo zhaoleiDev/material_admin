@@ -2,6 +2,7 @@ package com.zhaolei.material.admin.web.handler;
 
 import com.zhaolei.material.admin.domain.base.Response;
 import com.zhaolei.material.admin.domain.base.ResponseEnum;
+import com.zhaolei.material.admin.domain.exception.NoPermissionRunTimeException;
 import com.zhaolei.material.admin.domain.exception.NotLoginRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,14 @@ public class MyExceptionHandler {
     @ExceptionHandler
     public Response notLoginException(NotLoginRuntimeException e){
         return Response.addInfo(ResponseEnum.NOT_LOGIN);
+    }
+
+    @ExceptionHandler
+    public Response noPermissionException(NoPermissionRunTimeException e){
+        if(e.getMessage().equals(NoPermissionRunTimeException.NO_PERMISSION_OPERATE_ORG)){
+            return Response.addInfo(ResponseEnum.NOT_PERMISSION_OPERATE_ORG);
+        }
+        return Response.addInfo(ResponseEnum.NOT_PERMISSION);
     }
 
 

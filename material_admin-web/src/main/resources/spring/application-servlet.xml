@@ -32,14 +32,21 @@
 
     <!--拦截器可以针对特定的处理器映射器，而直接使用下面这个标签是全局的拦截器，对所有处理器映射器都生效-->
     <mvc:interceptors>
+        <!--按照声明顺序拦截-->
         <mvc:interceptor>
             <!--注意所有路径是/**-->
             <mvc:mapping path="/user/*"/>
             <mvc:mapping path="/org/*"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/registered"/>
-            <mvc:exclude-mapping path="/org/*"/>
             <bean class="com.zhaolei.material.admin.web.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+        <!--组织操作权限拦截-->
+        <mvc:interceptor>
+            <mvc:mapping path="/org/registered"/>
+            <mvc:mapping path="/org/updateByOrgName"/>
+            <mvc:mapping path="/org/deleteByOrgName"/>
+            <bean class="com.zhaolei.material.admin.web.interceptor.OrgOperationInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

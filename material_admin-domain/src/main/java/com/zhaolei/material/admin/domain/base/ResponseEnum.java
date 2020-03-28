@@ -15,7 +15,9 @@ public enum ResponseEnum {
     ERROR_PASSWORD(412,"密码错误"),
     ERROR_PARAM(413,"参数错误"),
     ERROR_ORG_TOKEN(414,"组织令牌错误"),
-    NOT_EXIST_ORG(415,"组织未备案")
+    NOT_EXIST_ORG(415,"组织未备案"),
+    NOT_PERMISSION_OPERATE_ORG(416,"无组织操作权限"),
+    NOT_PERMISSION(417,"无权限")
     ;
     private int code;
     private String msg;
