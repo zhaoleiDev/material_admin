@@ -20,3 +20,6 @@ function login(){
         }
     });
 }
+function registered(){
+    window.location.href = "registered.html";
+}
