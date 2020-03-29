@@ -8,7 +8,7 @@
         https://www.springframework.org/schema/tx/spring-tx.xsd">
 
    <!-- 配置数据源，使用阿里druid连接池-->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" lazy-init="false" init-method="init" destroy-method="close">
+    <bean id="dataSource" class="com.zhaolei.material.admin.dao.base.DecryptDruidSource" lazy-init="false" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${graduation.design.driverClassName}"/>
         <property name="url" value="${graduation.design.url}"/>
         <property name="username" value="${graduation.design.user.name}"/>

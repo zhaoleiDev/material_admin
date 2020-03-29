@@ -1,25 +1,24 @@
 package com.zhaolei.material.admin.common.tools;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author ZHAOLEI
  */
 public class ThreadLocalUtils {
-    private static ThreadLocal threadLocal ;
+    private static ThreadLocal<Map<String,Object>> threadLocal ;
     static{
-        threadLocal = new ThreadLocal(){
-            @Override
-            protected Object initialValue() {
-                return "";
-            }
-        } ;
+        threadLocal = ThreadLocal.withInitial(() -> new HashMap<>(2));
     }
 
-    public static Object get(){
-        return threadLocal.get();
+    public static Object get(String key){
+        Map map = threadLocal.get();
+        return map.get(key);
     }
 
-    public static void set(Object value){
-        threadLocal.set(value);
+    public static void set(Map<String,Object> map){
+        threadLocal.set(map);
     }
     public static void remove(){
         threadLocal.remove();

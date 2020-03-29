@@ -1,14 +1,18 @@
 package com.zhaolei.material.admin.web.interceptor;
 
+import com.zhaolei.material.admin.common.tools.ConstantUtils;
 import com.zhaolei.material.admin.common.tools.CookieUtils;
 import com.zhaolei.material.admin.common.tools.DigestUtils;
 import com.zhaolei.material.admin.common.tools.ThreadLocalUtils;
 import com.zhaolei.material.admin.domain.exception.NotLoginRuntimeException;
 import org.springframework.lang.Nullable;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录拦截器
@@ -25,12 +29,17 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-        String user = CookieUtils.getValue(request.getCookies(),"user");
+        String userBase64 = CookieUtils.getValue(request.getCookies(),"user");
         String loginToken = CookieUtils.getValue(request.getCookies(),"loginToken");
-        if(user == null || loginToken == null || !DigestUtils.md5(user).equals(loginToken)){
+        if(userBase64 == null || loginToken == null || !DigestUtils.md5(userBase64).equals(loginToken)){
             throw new NotLoginRuntimeException();
         }
-        ThreadLocalUtils.set(user);
+        String userStr = new String(Base64Utils.decode(userBase64.getBytes()));
+        String[] array = userStr.split(ConstantUtils.SPLIT_COOKIE_USER);
+        Map<String,Object> map = new HashMap<>(4);
+        map.put("stNum",array[0]);
+        map.put("id",Integer.parseInt(array[1]));
+        ThreadLocalUtils.set(map);
         return true;
     }
 

@@ -55,4 +55,5 @@ public interface UserMapper extends ISqlMapper {
      * @return 用户信息
      */
     UserDO selectByStNum(String stNum);
+
 }

@@ -1,8 +1,6 @@
 package com.zhaolei.material.admin.web.controller;
 
-import com.zhaolei.material.admin.common.tools.CookieUtils;
-import com.zhaolei.material.admin.common.tools.DigestUtils;
-import com.zhaolei.material.admin.common.tools.TimeUtils;
+import com.zhaolei.material.admin.common.tools.*;
 import com.zhaolei.material.admin.domain.base.Response;
 import com.zhaolei.material.admin.domain.base.ResponseEnum;
 import com.zhaolei.material.admin.domain.dao.UserDO;
@@ -12,12 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.util.Map;
 
 /**
  * @author ZHAOLEI
@@ -43,19 +42,34 @@ public class UserController {
         if(!userDo.getUserPassword().equals(password)){
             return Response.addInfo(ResponseEnum.ERROR_PASSWORD);
         }
-        String token = DigestUtils.md5(stNum);
+        //将学号与数据库id拼接在一起
+        String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId();
+        String userBase64 = Base64Utils.encodeToString(userStr.getBytes());
+        String token = DigestUtils.md5(userBase64);
         Cookie loginToken = CookieUtils.createCookie(COOKIE_NAME_LOGIN_TOKEN,token,TimeUtils.ONE_DAY,"/");
-        Cookie user = CookieUtils.createCookie(COOKIE_NAME_USER,stNum,TimeUtils.ONE_DAY,"/");
+        Cookie user = CookieUtils.createCookie(COOKIE_NAME_USER,userBase64,TimeUtils.ONE_DAY,"/");
         response.addCookie(loginToken);
         response.addCookie(user);
         log.info("login方法返回,耗时:{}",System.currentTimeMillis()-time1);
         return Response.success();
     }
 
-    @RequestMapping("/logout")
-    public Response logout(HttpServletRequest request,HttpServletResponse response){
+    @RequestMapping("/signOut")
+    public Response signOut(HttpServletRequest request,HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
         CookieUtils.clearCookie(response,cookies,COOKIE_NAME_LOGIN_TOKEN,COOKIE_NAME_USER);
+        return Response.success();
+    }
+
+    @RequestMapping("/logout")
+    public Response logout(HttpServletRequest request,HttpServletResponse response){
+        //清除cookie信息
+        Cookie[] cookies = request.getCookies();
+        CookieUtils.clearCookie(response,cookies,COOKIE_NAME_LOGIN_TOKEN,COOKIE_NAME_USER);
+        //修改数据库中的数据
+        Integer  id = (Integer)ThreadLocalUtils.get("id");
+        String stNum = (String)ThreadLocalUtils.get("stNum");
+        userService.deleteById(id,stNum);
         return Response.success();
     }
 

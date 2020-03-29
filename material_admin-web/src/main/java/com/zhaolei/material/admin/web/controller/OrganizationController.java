@@ -27,7 +27,7 @@ public class OrganizationController {
     public Response registered(@RequestBody OrganizationVO organizationVO){
         OrganizationDO organizationDO = new OrganizationDO();
         BeanUtils.copyProperties(organizationVO,organizationDO);
-        String token = DigestUtils.md5(organizationDO.getOrgName());
+        String token = DigestUtils.md5(organizationDO.getOrgName()+System.currentTimeMillis());
         organizationDO.setToken(token);
         organizationService.registered(organizationDO);
         return Response.success(token);
