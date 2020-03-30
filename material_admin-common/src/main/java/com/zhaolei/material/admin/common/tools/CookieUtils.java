@@ -44,21 +44,32 @@ public class CookieUtils {
         }
     }
 
+    /**
+     * 只能删除默认路径(/)下的cookie
+     * @param response 只有通过response另外设置值才能删除cookie
+     * @param cookies cookie列表
+     */
     public static void cleaAllCookie(HttpServletResponse response,Cookie[] cookies){
         for(Cookie cookie : cookies){
             cookie.setMaxAge(0);
             //当path、domain相同时才会删除对应的cookie
-            cookie.setPath("/");
+            cookie.setPath(ConstantUtils.DEFAULT_COOKIE_PATH);
             response.addCookie(cookie);
         }
     }
 
+    /**
+     *  只能删除默认路径(/)下的cookie
+     * @param response 只有通过response另外设置值才能删除cookie
+     * @param cookies cookie列表
+     * @param key 删除的cookie
+     */
     public static void clear(HttpServletResponse response,Cookie[] cookies,String key){
         for(Cookie cookie : cookies){
             if(cookie.getName().equals(key)){
                 cookie.setMaxAge(0);
                 //当path、domain相同时才会删除对应的cookie
-                cookie.setPath("/");
+                cookie.setPath(ConstantUtils.DEFAULT_COOKIE_PATH);
                 response.addCookie(cookie);
                 break;
             }

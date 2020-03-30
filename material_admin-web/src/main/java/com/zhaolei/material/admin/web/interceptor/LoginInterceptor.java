@@ -35,7 +35,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             throw new NotLoginRuntimeException();
         }
         String userStr = new String(Base64Utils.decode(userBase64.getBytes()));
+        System.out.println("base64解码后的数据为:"+userStr);
         String[] array = userStr.split(ConstantUtils.SPLIT_COOKIE_USER);
+        System.out.println("stNum:"+array[0]+"==="+"id:"+array[1]);
         Map<String,Object> map = new HashMap<>(4);
         map.put("stNum",array[0]);
         map.put("id",Integer.parseInt(array[1]));

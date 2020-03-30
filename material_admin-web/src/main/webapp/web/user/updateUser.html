@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户信息</title>
+    <link rel="stylesheet" href="updateUser.css">
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script src="updateUser.js"></script>
+</head>
+<body>
+<div class="xiao-container">
+    <div class="xiao-register-box">
+        <div class="xiao-title-box">
+            <span>修改用户信息</span>
+        </div>
+        <form action="#" method="post">
+            <div class="xiao-stNum-box">
+                <span class="xiao-require">*</span>
+                <label for="stNum"> 学生证号</label>
+                <div class="xiao-stNum-input">
+                    <input type="text" id="stNum"  name="stNum" placeholder="请输入学号 务必真实有效(必填项)" readonly="readonly" />
+                </div>
+            </div>
+
+            <div class="xiao-userName-box">
+                <span class="xiao-require">*</span>
+                <label for="userName">姓名</label>
+                <div class="xiao-userName-input">
+                    <input type="text" id="userName" name="userName" placeholder="请输入您的姓名(必填项)"/>
+                </div>
+            </div>
+
+            <div class="xiao-orgName-box">
+                <span class="xiao-require">*</span>
+                <label for="orgName">所属组织</label>
+                <div class="xiao-orgName-input">
+                    <input type="text" id="orgName" readonly="readonly">
+                </div>
+            </div>
+
+            <div class="xiao-orgToken-box">
+                <span class="xiao-require">*</span>
+                <label for="orgToken">组织令牌</label>
+                <div class="xiao-orgToken-input">
+                    <input type="text" id="orgToken" name="orgToken" placeholder="请输入组织令牌(必填项)" readonly="readonly" />
+                </div>
+            </div>
+
+            <div class="xiao-phoneNum-box">
+                <span class="xiao-require">*</span>
+                <label for="phoneNum">电话号码</label>
+                <div class="xiao-phoneNum-input">
+                    <input type="text" id="phoneNum" name="phoneNum" placeholder="请输入您的电话号码(必填项)" />
+                </div>
+            </div>
+
+            <div class="xiao-userPassword-box">
+                <span class="xiao-require">*</span>
+                <label for="userPassword">密码</label>
+                <div class="xiao-userPassword-input">
+                    <input type="password" id="userPassword" name="userPassword" placeholder="请输入您的密码(必填项)"/>
+                </div>
+            </div>
+
+            <div class="xiao-userPassword2-box" onmouseleave="checkPassword()">
+                <span class="xiao-require">*</span>
+                <label for="userPassword2">密码确认</label>
+                <div class="xiao-userPassword2-input">
+                    <input type="password" id="userPassword2" name="userPassword2" placeholder="请再次确认您的密码"/>
+                </div>
+            </div>
+
+
+            <div class="xiao-submit-box" onclick="updateUser()">
+                确认更新
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

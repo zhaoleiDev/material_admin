@@ -2,6 +2,7 @@ package com.zhaolei.material.admin.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.zhaolei.material.admin.common.redis.RedisUtils;
+import com.zhaolei.material.admin.common.tools.ThreadLocalUtils;
 import com.zhaolei.material.admin.common.tools.TimeUtils;
 import com.zhaolei.material.admin.dao.graduation.OrganizationMapper;
 import com.zhaolei.material.admin.dao.graduation.UserMapper;
@@ -43,7 +44,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updateById(UserDO userDo) {
-        return userMapper.updateByPrimaryKey(userDo)>0;
+        Integer id = (Integer)ThreadLocalUtils.get("id");
+        userDo.setId(id);
+        return userMapper.updateByPrimaryKeySelective(userDo)>0;
     }
 
     @Override

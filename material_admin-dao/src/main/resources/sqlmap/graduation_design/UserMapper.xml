@@ -103,29 +103,29 @@
   <update id="updateByPrimaryKeySelective" parameterType="userDO">
     update m_user
     <set>
-      <if test="organization != null">
+      <if test="organization != null and organization !='' " >
         organization = #{organization,jdbcType=VARCHAR},
       </if>
-      <if test="organizationToken != null">
+      <if test="organizationToken != null and organizationToken !=''">
         organization_token = #{organizationToken,jdbcType=VARCHAR},
       </if>
-      <if test="studentNum != null">
+      <if test="studentNum != null and studentNum !=''">
         student_num = #{studentNum,jdbcType=VARCHAR},
       </if>
-      <if test="userPassword != null">
+      <if test="userPassword != null and userPassword !=''">
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
+      <if test="userName != null and userName !=''">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="phoneNum != null">
+      <if test="phoneNum != null and phoneNum !=''">
         phone_num = #{phoneNum,jdbcType=VARCHAR},
       </if>
-      <if test="photoInfo != null">
+      <if test="photoInfo != null and photoInfo !=''">
         photo_info = #{photoInfo,jdbcType=VARCHAR},
       </if>
       <if test="statusInfo != null">
-        status_info = #{statusInfo,jdbcType=Integer},
+        status_info = #{statusInfo,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

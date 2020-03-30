@@ -44,10 +44,12 @@ public class UserController {
         }
         //将学号与数据库id拼接在一起
         String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId();
+        log.info("原始字符串为:{}",userStr);
         String userBase64 = Base64Utils.encodeToString(userStr.getBytes());
+        log.info("加密后字符串为:{}",userBase64);
         String token = DigestUtils.md5(userBase64);
-        Cookie loginToken = CookieUtils.createCookie(COOKIE_NAME_LOGIN_TOKEN,token,TimeUtils.ONE_DAY,"/");
-        Cookie user = CookieUtils.createCookie(COOKIE_NAME_USER,userBase64,TimeUtils.ONE_DAY,"/");
+        Cookie loginToken = CookieUtils.createCookie(COOKIE_NAME_LOGIN_TOKEN,token,TimeUtils.ONE_DAY,ConstantUtils.DEFAULT_COOKIE_PATH);
+        Cookie user = CookieUtils.createCookie(COOKIE_NAME_USER,userBase64,TimeUtils.ONE_DAY,ConstantUtils.DEFAULT_COOKIE_PATH);
         response.addCookie(loginToken);
         response.addCookie(user);
         log.info("login方法返回,耗时:{}",System.currentTimeMillis()-time1);
@@ -81,8 +83,25 @@ public class UserController {
     }
 
     @RequestMapping("/getInfo")
-    public Response getInfo(String stNum){
-        return Response.success(userService.getUerByStNum(stNum));
+    public Response getInfo(){
+        String stNum = (String)ThreadLocalUtils.get("stNum");
+        log.info("登录的用户:{}",stNum);
+        UserDO userDO = userService.getUerByStNum(stNum);
+        //组织令牌不对外展示
+        userDO.setOrganizationToken("******");
+        userDO.setUserPassword(ConstantUtils.OUT_PASSWORD);
+        return Response.success(userDO);
+    }
+
+    @RequestMapping("update")
+    public Response update(UserVO userVO){
+        if(ConstantUtils.OUT_PASSWORD.equals(userVO.getUserPassword())){
+            userVO.setUserPassword(null);
+        }
+        UserDO userDO = new UserDO();
+        BeanUtils.copyProperties(userVO,userDO);
+        userService.updateById(userDO);
+        return Response.success();
     }
 
 

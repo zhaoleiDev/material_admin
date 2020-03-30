@@ -1,0 +1,218 @@
+body,input{
+    margin: 0;
+    padding: 0;
+    background: pink;
+}
+input{
+    display: inline-block;
+    background: #fff;
+}
+.xiao-container{
+    width: 100%;
+}
+.xiao-register-box{
+    position: relative;
+    height: 800px;
+    width: 700px;
+    top: 50px;
+    margin: 0 auto;
+    z-index: 99999;
+    background:#ffffff;
+    border: 7px solid #ccc;
+}
+.xiao-require{
+    color: red;
+}
+.xiao-title-box{
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    margin-left: 175px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: red;
+    line-height: 50px;
+}
+.xiao-stNum-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:100px;
+    margin-left:80px;
+    font-weight: 700;
+}
+.xiao-stNum-input{
+    display: inline-block;
+    margin-left: 28px;
+    /*background: green;*/
+}
+#stNum{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.xiao-userName-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:180px;
+    margin-left:80px;
+    font-weight: 700;
+}
+.xiao-userName-input{
+    display: inline-block;
+    margin-left: 61px;
+}
+
+#userName{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+.xiao-orgName-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:260px;
+    margin-left:80px;
+    font-weight: 700;
+}
+.xiao-orgName-input{
+    display: inline-block;
+    margin-left: 28px;
+}
+#orgName{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+.xiao-orgToken-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:340px;
+    margin-left:80px;
+    font-weight: 700;
+}
+.xiao-orgToken-input{
+    display: inline-block;
+    margin-left: 28px;
+}
+#orgToken{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+.xiao-phoneNum-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:420px;
+    margin-left:80px;
+    font-weight: 700;
+}
+
+.xiao-phoneNum-input{
+    display: inline-block;
+    margin-left: 28px;
+}
+#phoneNum{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.xiao-userPassword-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:500px;
+    margin-left:80px;
+    font-weight: 700;
+}
+.xiao-userPassword-input{
+    display: inline-block;
+    margin-left: 61px;
+}
+#userPassword{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.xiao-userPassword2-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:580px;
+    margin-left:80px;
+    font-weight: 700;
+}
+.xiao-userPassword2-input{
+    display: inline-block;
+    margin-left: 28px;
+}
+#userPassword2{
+    height: 35px;
+    width: 290px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+
+
+/*.xiao-userGender-box{
+    position: absolute;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:500px;
+    margin-left:82px;
+    font-weight: 700;
+}
+.xiao-userGender-input{
+    display: inline-block;
+    margin-left: 62px;
+}
+.xiao-require{
+    color: red;
+}*/
+
+
+.xiao-submit-box{
+    position:absolute;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 660px;
+    margin-left:180px;
+    border-radius: 5px;
+    background: dodgerblue;
+    color: white;
+    text-align:center;
+}
+.xiao-goLogin-box{
+    position:absolute;
+    width: 150px;
+    height: 20px;
+    margin-top: 670px;
+    margin-left:465px;
+}
