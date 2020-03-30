@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
  * @author ZHAOLEI
@@ -33,9 +32,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Response login(@RequestParam("stNum") String stNum, @RequestParam("pwd")String password, HttpServletRequest request, HttpServletResponse response){
-        long time1 = System.currentTimeMillis();
         UserDO userDo = userService.getUerByStNum(stNum);
-        log.info("查询数据库,耗时:{}",System.currentTimeMillis()-time1);
         if(userDo == null){
             return Response.addInfo(ResponseEnum.NOT_REGISTERED);
         }
@@ -44,15 +41,12 @@ public class UserController {
         }
         //将学号与数据库id拼接在一起
         String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId();
-        log.info("原始字符串为:{}",userStr);
         String userBase64 = Base64Utils.encodeToString(userStr.getBytes());
-        log.info("加密后字符串为:{}",userBase64);
         String token = DigestUtils.md5(userBase64);
         Cookie loginToken = CookieUtils.createCookie(COOKIE_NAME_LOGIN_TOKEN,token,TimeUtils.ONE_DAY,ConstantUtils.DEFAULT_COOKIE_PATH);
         Cookie user = CookieUtils.createCookie(COOKIE_NAME_USER,userBase64,TimeUtils.ONE_DAY,ConstantUtils.DEFAULT_COOKIE_PATH);
         response.addCookie(loginToken);
         response.addCookie(user);
-        log.info("login方法返回,耗时:{}",System.currentTimeMillis()-time1);
         return Response.success();
     }
 
