@@ -17,7 +17,7 @@ public class Response<T> implements Serializable {
     private String msg;
     private T data;
 
-    public static Response parseRespons(ServiceResponse serviceResponse){
+    public static Response parseResponse(ServiceResponse serviceResponse){
         Response res = new Response();
         res.setMsg(serviceResponse.getMsg());
         res.setCode(serviceResponse.getCode());
@@ -33,6 +33,19 @@ public class Response<T> implements Serializable {
     public static Response success(){
         return setResponseEnum(ResponseEnum.SUCCESS);
     }
+
+    /**
+     * 操作失败，出现操作数据库中不存在记录的情况
+     * @return response
+     */
+    public static Response fail(){
+        return setResponseEnum(ResponseEnum.FAIL_OPERATION);
+    }
+
+    /**
+     * 服务端发生了异常
+     * @return response
+     */
     public static Response error(){
         return setResponseEnum(ResponseEnum.ERROR);
     }

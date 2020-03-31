@@ -39,6 +39,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         Map<String,Object> map = new HashMap<>(4);
         map.put("stNum",array[0]);
         map.put("id",Integer.parseInt(array[1]));
+        map.put("orgName",array[2]);
         ThreadLocalUtils.set(map);
         return true;
     }

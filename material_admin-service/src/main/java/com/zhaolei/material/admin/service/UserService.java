@@ -32,9 +32,8 @@ public interface UserService {
     /**
      * 根据id逻辑删除用户，stNum用于删除缓存
      * @param id 主键
-     * @param stNum 学号
      * @return 更新条数
      */
-    boolean deleteById(Integer id,String stNum);
+    boolean deleteById(Integer id);
 
 }

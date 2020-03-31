@@ -15,7 +15,7 @@
     <!--让spring mvc不处理静态资源-->
     <mvc:default-servlet-handler />
    <!-- 开启自动扫描，只负责扫描web层的，其他层的在application中去处理-->
-    <context:component-scan base-package="com.zhaolei.material.admin.web.controller"/>
+    <context:component-scan base-package="com.zhaolei.material.admin.web"/>
     <!--配置转换器，格式转换等功能-->
     <bean id="convert" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
     <!--支持mvc注解驱动
@@ -37,6 +37,8 @@
             <!--注意所有路径是/**-->
             <mvc:mapping path="/user/*"/>
             <mvc:mapping path="/org/*"/>
+            <mvc:mapping path="/material/*"/>
+            <mvc:mapping path="/lendBorrow/"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/registered"/>
             <bean class="com.zhaolei.material.admin.web.interceptor.LoginInterceptor"/>

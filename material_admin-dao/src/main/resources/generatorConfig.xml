@@ -28,7 +28,7 @@
             <!-- 是否允许子包 -->
             <property name="enableSubPackages" value="false" />
             <!-- 是否对modal添加构造函数 -->
-            <property name="constructorBased" value="true" />
+            <property name="constructorBased" value="false" />
             <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
             <property name="trimStrings" value="true" />
             <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
@@ -51,7 +51,11 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="organization" domainObjectName="OrganizationDO"
+        <table tableName="total_material" domainObjectName="Material"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false">
+        </table>
+        <table tableName="lend_borrow_material" domainObjectName="LendBorrowMaterial"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false">
         </table>

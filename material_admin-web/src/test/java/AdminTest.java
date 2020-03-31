@@ -1,6 +1,7 @@
 import com.zhaolei.material.admin.dao.graduation.UserMapper;
 import com.zhaolei.material.admin.domain.dao.OrganizationDO;
 import com.zhaolei.material.admin.domain.dao.UserDO;
+import com.zhaolei.material.admin.service.MaterialService;
 import com.zhaolei.material.admin.service.OrganizationService;
 import com.zhaolei.material.admin.service.UserService;
 import org.junit.Test;
@@ -26,10 +27,11 @@ public class AdminTest {
     private UserService userService;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private MaterialService materialService;
 
     @Test
     public void test1(){
-        UserDO userDO = userService.getUerByStNum("222016333210145");
-        System.out.println(userDO.toString());
+        System.out.println(materialService.deleteById(1));
     }
 }

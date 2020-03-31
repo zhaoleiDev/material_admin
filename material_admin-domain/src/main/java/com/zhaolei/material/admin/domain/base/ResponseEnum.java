@@ -17,7 +17,8 @@ public enum ResponseEnum {
     ERROR_ORG_TOKEN(414,"组织令牌错误"),
     NOT_EXIST_ORG(415,"组织未备案"),
     NOT_PERMISSION_OPERATE_ORG(416,"无组织操作权限"),
-    NOT_PERMISSION(417,"无权限")
+    NOT_PERMISSION(417,"无权限"),
+    FAIL_OPERATION(418,"操作失败")
     ;
     private int code;
     private String msg;

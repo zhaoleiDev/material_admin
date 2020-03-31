@@ -34,7 +34,7 @@ public class CookieUtils {
         Cookie cookie = new Cookie(key,value);
         cookie.setPath(path);
         //时区问题，所以加上八小时
-        cookie.setMaxAge(maxAge+TimeUtils.EIGHT_HOURS);
+        cookie.setMaxAge(maxAge+TimeUtils.EIGHT_HOURS_M);
         return cookie;
     }
 

@@ -3,9 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="logImpl" value="log4j2"/>
+    </settings>
     <typeAliases>
         <typeAlias type="com.zhaolei.material.admin.domain.dao.OrganizationDO" alias="organizationDO"/>
         <typeAlias type="com.zhaolei.material.admin.domain.dao.UserDO" alias="userDO"/>
+        <typeAlias type="com.zhaolei.material.admin.domain.dao.LendBorrowMaterialDO" alias="lendBorrowMaterial"/>
+        <typeAlias type="com.zhaolei.material.admin.domain.dao.MaterialDO" alias="material"/>
     </typeAliases>
 
 </configuration>

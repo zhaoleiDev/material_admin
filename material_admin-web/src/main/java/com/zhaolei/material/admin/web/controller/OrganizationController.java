@@ -40,14 +40,18 @@ public class OrganizationController {
         }
         OrganizationDO organizationDO = new OrganizationDO();
         BeanUtils.copyProperties(organizationVO,organizationDO);
-        organizationService.updateByOrgName(organizationDO);
-        return Response.success();
+        if(organizationService.updateByOrgName(organizationDO)){
+            return Response.success();
+        }
+        return Response.fail();
     }
 
     @RequestMapping("/deleteByOrgName")
     public Response deleteByOrgName(@RequestParam("orgName") String orgName){
-        organizationService.deleteByOrgName(orgName);
-        return Response.success();
+        if(organizationService.deleteByOrgName(orgName)){
+            return Response.success();
+        }
+        return Response.fail();
     }
 
     @RequestMapping("/getAllOrg")

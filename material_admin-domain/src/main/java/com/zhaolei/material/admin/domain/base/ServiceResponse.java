@@ -1,5 +1,8 @@
 package com.zhaolei.material.admin.domain.base;
 
+/**
+ * @author ZHAOLEI
+ */
 public class ServiceResponse<T> {
     private int code;
     private String msg;

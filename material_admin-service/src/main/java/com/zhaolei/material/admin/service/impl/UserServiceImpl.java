@@ -2,6 +2,7 @@ package com.zhaolei.material.admin.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.zhaolei.material.admin.common.redis.RedisUtils;
+import com.zhaolei.material.admin.common.tools.LoginContextUtils;
 import com.zhaolei.material.admin.common.tools.ThreadLocalUtils;
 import com.zhaolei.material.admin.common.tools.TimeUtils;
 import com.zhaolei.material.admin.dao.graduation.OrganizationMapper;
@@ -46,7 +47,22 @@ public class UserServiceImpl implements UserService {
     public boolean updateById(UserDO userDo) {
         Integer id = (Integer)ThreadLocalUtils.get("id");
         userDo.setId(id);
-        return userMapper.updateByPrimaryKeySelective(userDo)>0;
+        boolean res = userMapper.updateByPrimaryKeySelective(userDo)>0;
+        String stNum = (String)ThreadLocalUtils.get("stNum");
+        RedisUtils.del(stNum);
+        return res;
+    }
+
+    @Override
+    public boolean deleteById(Integer id) {
+        String stNum = LoginContextUtils.getStNum();
+        UserDO userDO = new UserDO();
+        userDO.setId(id);
+        //将状态设置为注销状态
+        userDO.setStatusInfo(0);
+        boolean res = userMapper.updateByPrimaryKeySelective(userDO)>0;
+        RedisUtils.del(stNum);
+        return res;
     }
 
     @Override
@@ -56,20 +72,10 @@ public class UserServiceImpl implements UserService {
             UserDO userDO = userMapper.selectByStNum(stNum);
             String value = JSON.toJSONString(userDO);
             //即使数据库值为null也下redis中set值
-            RedisUtils.setRandomEx(stNum, value,TimeUtils.FIVE_MINUTE);
+            RedisUtils.setRandomEx(stNum, value,TimeUtils.TEN_MINUTE_S);
             return userDO;
         }
         return JSON.parseObject(jsonStr,UserDO.class);
     }
 
-    @Override
-    public boolean deleteById(Integer id,String stNum) {
-        //先将redis缓存删除
-        RedisUtils.del(stNum);
-        UserDO userDO = new UserDO();
-        userDO.setId(id);
-        //将状态设置为注销状态
-        userDO.setStatusInfo(0);
-        return userMapper.updateByPrimaryKeySelective(userDO)>0;
-    }
 }
