@@ -52,7 +52,12 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public MaterialDO getMaterialStockById(Integer id) {
-        return materialMapper.getMaterialStockById(id);
+    public MaterialDO getMaterialLendNumById(Integer id) {
+        return materialMapper.getMaterialLendNumById(id);
+    }
+
+    @Override
+    public boolean addLendNumById(Integer id , Integer addNum) {
+        return materialMapper.updateLendNumById(id,addNum)>0;
     }
 }

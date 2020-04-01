@@ -1,4 +1,5 @@
 getUserInfo();
+var loginUro = "/web/login.html";
 
 //获取用户信息
 function getUserInfo(){
@@ -15,6 +16,8 @@ function getUserInfo(){
                 $("#userPassword").val(res.userPassword);
                 $("#phoneNum").val(res.phoneNum);
                 $("#userPassword2").val(res.userPassword);
+            }else if(data.code === 411){
+                window.location.href = loginUro;
             }else{
                 alert(data.msg);
             }
@@ -44,6 +47,8 @@ function updateUser(){
         success:function(data){
             if(data.code === 200){
                 alert("修改成功");
+            }else if(data.code === 411){
+                window.location.href = loginUro;
             }else{
                 alert(data.msg);
             }

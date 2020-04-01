@@ -35,6 +35,8 @@ public class CookieUtils {
         cookie.setPath(path);
         //时区问题，所以加上八小时
         cookie.setMaxAge(maxAge+TimeUtils.EIGHT_HOURS_M);
+        //禁止前端通过document读取cookie的值
+        cookie.setHttpOnly(true);
         return cookie;
     }
 

@@ -12,6 +12,12 @@
     <artifactId>material_admin-domain</artifactId>
 
     <dependencies>
+       <!-- 由于VO实体放在了domain中,需要用到springmvc注解，所以讲依赖下沉-->
+        <!-- spring-webmvc-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
         <!--jackson用来支持json输入输出
         下沉到domain是因为vo需要用到jackson相关注解
         -->

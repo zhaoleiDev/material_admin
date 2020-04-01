@@ -13,4 +13,16 @@
         <typeAlias type="com.zhaolei.material.admin.domain.dao.MaterialDO" alias="material"/>
     </typeAliases>
 
+   <!-- 分页插件 PageHelper-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--指定数据库为mysql-->
+            <property name="helperDialect" value="mysql"/>
+            <!--需要查询总量-->
+            <property name="rowBoundsWithCount" value="true"/>
+            <!--当分页参数小于0时查第一页，大于所有页码时查最后一页-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+
 </configuration>

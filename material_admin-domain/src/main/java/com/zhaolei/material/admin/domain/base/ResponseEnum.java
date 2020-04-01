@@ -20,7 +20,8 @@ public enum ResponseEnum {
     NOT_PERMISSION(417,"无权限"),
     FAIL_OPERATION(418,"操作失败"),
     BORROWER_NOT_REGISTERED(419,"对方未注册,借出失败"),
-    STOCK_LOW(420,"库存不够")
+    STOCK_LOW(420,"库存不够"),
+    MATERIAL_NOT_EXIST(421,"物资不存在")
     ;
     private int code;
     private String msg;

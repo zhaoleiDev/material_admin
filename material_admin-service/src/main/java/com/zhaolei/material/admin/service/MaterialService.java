@@ -50,5 +50,13 @@ public interface MaterialService {
      * @param id 物质id
      * @return 返回物资信息
      */
-    MaterialDO getMaterialStockById(Integer id);
+    MaterialDO getMaterialLendNumById(Integer id);
+
+    /**
+     * 增加物资的可借出数量
+     * @param id 主键id
+     * @param addNum 需要增加的数量
+     * @return 返回
+     */
+    boolean addLendNumById(Integer id, Integer addNum);
 }

@@ -27,12 +27,7 @@
             <artifactId>material_admin-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
-       <!-- spring-webmvc-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
+        
 
         <!--servlet,用来支持HttpServletRequest 与 HttpServletResponse-->
         <dependency>

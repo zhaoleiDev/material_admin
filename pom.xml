@@ -32,6 +32,7 @@
         <jedis-version>3.2.0</jedis-version>
         <fastjson-version>1.2.67</fastjson-version>
         <lombok-version>1.18.10</lombok-version>
+        <pageHelper_vesion>5.1.11</pageHelper_vesion>
     </properties>
 
     <dependencyManagement>
@@ -142,6 +143,13 @@
                 <version>${lombok-version}</version>
                 <scope>provided</scope>
             </dependency>
+           <!-- pageHelper分页插件-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pageHelper_vesion}</version>
+            </dependency>
+
 
 
 
