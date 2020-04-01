@@ -1,9 +1,12 @@
 package com.zhaolei.material.admin.domain.dao;
 
+import java.io.Serializable;
+
 /**
  * @author ZHAOLEI
  */
-public class UserDO {
+public class UserDO implements Serializable {
+    private static final long serialVersionUID = -1366558103851667396L;
     /**
      * 主键id
      */

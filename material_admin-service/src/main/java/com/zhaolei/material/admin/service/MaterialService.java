@@ -35,4 +35,20 @@ public interface MaterialService {
      * @return 结果集
      */
     List<MaterialDO> getMaterialByOrg(String orgName);
+
+    /**
+     * 根据物资id查询物资情况
+     * @param id 物资id
+     * @return 物资信息
+     */
+    MaterialDO getMaterialById(Integer id);
+
+    /**
+     * 根据物资信息查询物资信息（主要是库存）
+     * 不能使用快照读去查询，因为在查询过程中可能其他线程已经更改了库存数据，mvcc的版本号并不是事务开启时，而是执行了其中某个操作时
+     * 需要使用当前读去查询，在这个事务未结束之前阻塞其他的修改操作
+     * @param id 物质id
+     * @return 返回物资信息
+     */
+    MaterialDO getMaterialStockById(Integer id);
 }

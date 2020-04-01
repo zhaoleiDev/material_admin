@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author ZHAOLEI
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrganizationVO {
+public class OrganizationVO implements Serializable {
+    private static final long serialVersionUID = 6672050943088742308L;
     /**
      * 组织名称
      */
