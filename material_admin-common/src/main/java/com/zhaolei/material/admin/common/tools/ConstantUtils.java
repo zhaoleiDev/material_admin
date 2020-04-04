@@ -11,7 +11,7 @@ public class ConstantUtils {
     /**
      * cookie中user的值为学号与数据库主键的组合，中间用该符号分割
      */
-    public static final String SPLIT_COOKIE_USER = "===";
+    public static final String SPLIT_COOKIE_USER = "=";
     /**
      * 对外输出的密码
      */

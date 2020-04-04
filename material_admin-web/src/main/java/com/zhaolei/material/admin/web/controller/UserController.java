@@ -38,8 +38,8 @@ public class UserController {
         if(!userDo.getUserPassword().equals(password)){
             return Response.addInfo(ResponseEnum.ERROR_PASSWORD);
         }
-        //将学号与数据库id、组织拼接在一起  学号===数据库id===组织
-        String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId()+ConstantUtils.SPLIT_COOKIE_USER+userDo.getOrganization();
+        //将学号与数据库id、组织、当前时间拼接在一起  学号===数据库id===组织===当前时间   当前时间用于保证loginToken是一个变化的值
+        String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId()+ConstantUtils.SPLIT_COOKIE_USER+userDo.getOrganization()+ConstantUtils.SPLIT_COOKIE_USER+Math.random();
         String userBase64 = Base64Utils.encodeToString(userStr.getBytes());
         String token = DigestUtils.md5(userBase64);
         Cookie loginToken = CookieUtils.createCookie(ConstantUtils.COOKIE_LOGIN_TOKEN,token,TimeUtils.ONE_HOURS_M,ConstantUtils.DEFAULT_COOKIE_PATH);
@@ -92,7 +92,9 @@ public class UserController {
     public Response getInfo(){
         String stNum = (String)ThreadLocalUtils.get("stNum");
         log.info("登录的用户:{}",stNum);
+        long time = System.currentTimeMillis();
         UserDO userDO = userService.getUerByStNum(stNum);
+        log.info("通过学号查询用户信息耗时{}",System.currentTimeMillis()-time);
         //组织令牌不对外展示
         userDO.setOrganizationToken("******");
         userDO.setUserPassword(ConstantUtils.OUT_PASSWORD);

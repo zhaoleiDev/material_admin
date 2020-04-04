@@ -15,6 +15,7 @@ public class Response<T> implements Serializable {
     private static final long serialVersionUID = 5612140254005941933L;
     private int code;
     private String msg;
+    private Page page;
     private T data;
 
     public static Response parseResponse(ServiceResponse serviceResponse){
@@ -22,6 +23,7 @@ public class Response<T> implements Serializable {
         res.setMsg(serviceResponse.getMsg());
         res.setCode(serviceResponse.getCode());
         res.setData(serviceResponse.getData());
+        res.setPage(serviceResponse.getPage());
         return res;
     }
 
@@ -92,5 +94,13 @@ public class Response<T> implements Serializable {
 
     private void setData(T data) {
         this.data = data;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
     }
 }

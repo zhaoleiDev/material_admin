@@ -1,6 +1,9 @@
 package com.zhaolei.material.admin.service;
 
+import com.zhaolei.material.admin.domain.base.Page;
+import com.zhaolei.material.admin.domain.base.ServiceResponse;
 import com.zhaolei.material.admin.domain.dao.MaterialDO;
+import com.zhaolei.material.admin.domain.vo.MaterialResponse;
 
 import java.util.List;
 
@@ -30,11 +33,12 @@ public interface MaterialService {
     boolean updateById(MaterialDO materialDO);
 
     /**
-     * 根据组织名称获取物资信息
+     * 根据组织查询物资信息
      * @param orgName 组织名称
+     * @param page 分页信息
      * @return 结果集
      */
-    List<MaterialDO> getMaterialByOrg(String orgName);
+    ServiceResponse getMaterialByOrg(String orgName, Page page);
 
     /**
      * 根据物资id查询物资情况

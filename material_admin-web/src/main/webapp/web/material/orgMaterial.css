@@ -1,0 +1,21 @@
+table{
+    border-collapse:collapse;
+}
+thead tr{
+    background: #13E8E9;
+    border-bottom: solid;
+}
+#div1 {
+    height: 50px;
+    font-size: x-large;
+}
+#div1 a{
+    font-size: x-large;
+    position: relative;
+    left:85%;
+    top:10px;
+}
+#div-page{
+    position:relative;
+    left:90%;
+}

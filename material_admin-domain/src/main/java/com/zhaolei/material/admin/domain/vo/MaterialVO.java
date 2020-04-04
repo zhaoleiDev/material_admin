@@ -24,12 +24,12 @@ public class MaterialVO implements Serializable {
     /**
      * 总量
      */
-    private Short totalNum;
+    private Integer totalNum;
 
     /**
      * 可借出数量
      */
-    private Short lendNum;
+    private Integer lendNum;
 
     /**
      * 负责人学号

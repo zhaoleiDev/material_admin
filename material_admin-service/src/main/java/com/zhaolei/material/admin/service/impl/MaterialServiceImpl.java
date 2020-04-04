@@ -1,12 +1,22 @@
 package com.zhaolei.material.admin.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhaolei.material.admin.common.tools.LoginContextUtils;
 import com.zhaolei.material.admin.dao.graduation.MaterialMapper;
+import com.zhaolei.material.admin.domain.base.Page;
+import com.zhaolei.material.admin.domain.base.ResponseEnum;
+import com.zhaolei.material.admin.domain.base.ServiceResponse;
 import com.zhaolei.material.admin.domain.dao.MaterialDO;
+import com.zhaolei.material.admin.domain.dao.UserDO;
+import com.zhaolei.material.admin.domain.vo.MaterialResponse;
 import com.zhaolei.material.admin.service.MaterialService;
+import com.zhaolei.material.admin.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +28,8 @@ import java.util.List;
 public class MaterialServiceImpl implements MaterialService {
     @Autowired
     private MaterialMapper materialMapper;
+    @Autowired
+    private UserService userService;
 
 
     @Override
@@ -42,8 +54,28 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public List<MaterialDO> getMaterialByOrg(String orgName) {
-        return materialMapper.getMaterialByOrg(orgName);
+    public ServiceResponse getMaterialByOrg(String orgName, Page page) {
+        List<MaterialResponse> materialResponseList = new ArrayList<>();
+        //设置分页参数
+        PageHelper.startPage((page.getPageNum()-1)*page.getPageSize(),page.getPageSize());
+        List<MaterialDO> list = materialMapper.getMaterialByOrg(orgName);
+        //类型强转获取分页信息
+        PageInfo pageHepler = new PageInfo<>(list);
+        Page resPage = new Page();
+        resPage.setTotal((int)pageHepler.getTotal());
+        resPage.setPageNum(pageHepler.getPageNum());
+        resPage.setPageSize(pageHepler.getPageSize());
+        for(MaterialDO materialDO:list){
+            MaterialResponse materialResponse = new MaterialResponse();
+            BeanUtils.copyProperties(materialDO,materialResponse);
+            UserDO principal = userService.getUerByStNum(materialDO.getPrincipalStNum());
+            if(principal != null){
+                materialResponse.setPrincipalName(principal.getUserName());
+                materialResponse.setPrincipalPhoneNum(principal.getPhoneNum());
+                materialResponseList.add(materialResponse);
+            }
+        }
+        return ServiceResponse.addInfo(ResponseEnum.SUCCESS,materialResponseList,resPage);
     }
 
     @Override

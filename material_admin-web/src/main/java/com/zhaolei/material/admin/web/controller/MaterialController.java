@@ -2,9 +2,10 @@ package com.zhaolei.material.admin.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zhaolei.material.admin.common.tools.LoginContextUtils;
-import com.zhaolei.material.admin.domain.base.Response;
+import com.zhaolei.material.admin.domain.base.*;
 import com.zhaolei.material.admin.domain.dao.MaterialDO;
 import com.zhaolei.material.admin.domain.dao.UserDO;
+import com.zhaolei.material.admin.domain.vo.MaterialResponse;
 import com.zhaolei.material.admin.domain.vo.MaterialVO;
 import com.zhaolei.material.admin.service.MaterialService;
 import com.zhaolei.material.admin.service.UserService;
@@ -43,8 +44,14 @@ public class MaterialController {
         log.info("学号为:{}的用户录入物资:{}",stNum, JSON.toJSONString(materialVO));
         MaterialDO materialDO = new MaterialDO();
         BeanUtils.copyProperties(materialVO,materialDO);
+        log.info("materialDO:{}",JSON.toJSONString(materialDO));
         //防止前端传入id,造成数据库混乱
         materialDO.setId(null);
+        //负责人检查
+        UserDO principal = userService.getUerByStNum(materialVO.getPrincipalStNum());
+        if(principal == null){
+            return Response.addInfo(ResponseEnum.PRINCIPAL_NOT_REGISTERED);
+        }
         //获取当前操作人信息
         UserDO userDO = userService.getUerByStNum(stNum);
         materialDO.setUpdateStNum(stNum);
@@ -75,10 +82,11 @@ public class MaterialController {
     }
 
     @RequestMapping("/getOrgMaterial")
-    public Response getOrgMaterial(){
+    public Response getOrgMaterial(@RequestParam(required = false,defaultValue = "0") int pageNum,@RequestParam(required = false,defaultValue = "15") int pageSize){
         String orgName = LoginContextUtils.getOrgName();
-        List<MaterialDO> list = materialService.getMaterialByOrg(orgName);
-        return Response.success(list);
+        Page page = new Page(pageNum,pageSize);
+        ServiceResponse serviceResponse = materialService.getMaterialByOrg(orgName,page);
+        return Response.parseResponse(serviceResponse);
     }
 
 }

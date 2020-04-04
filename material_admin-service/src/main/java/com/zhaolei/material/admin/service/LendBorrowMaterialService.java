@@ -35,8 +35,8 @@ public interface LendBorrowMaterialService {
 
     /**
      * 根据学号查看借入者信息
-     * @param BorrowNum 借入者学号
+     * @param borrowNum 借入者学号
      * @return 结果集
      */
-    List<LendBorrowMaterialDO> getBorrowMaterialByStNum(Integer BorrowNum);
+    List<LendBorrowMaterialDO> getBorrowMaterialByStNum(Integer borrowNum);
 }

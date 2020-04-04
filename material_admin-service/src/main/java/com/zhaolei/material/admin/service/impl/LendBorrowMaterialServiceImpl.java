@@ -21,8 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 个人的借入借出数据使用缓存：key分别为 学号+lend  学号+borrow
+ * 个人的借入借出数据使用缓存：key分别为 学号+lend  学号+borrow,缓存时间可以设置相对较长，若删除缓存失败日志会有对应的记录
  * 组织的借入借出数据不使用缓存，一个组员对数据的更新会影响到整个组织的借入、借出数据
+ * 索引问题:由于组织角度没走缓存，所以索引需要优先考虑组织维度
  * @author ZHAOLEI
  */
 @Service

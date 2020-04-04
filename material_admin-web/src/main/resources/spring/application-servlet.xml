@@ -41,6 +41,7 @@
             <mvc:mapping path="/lendBorrow/"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/registered"/>
+            <mvc:exclude-mapping path="/org/getAllOrg"/>
             <bean class="com.zhaolei.material.admin.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
         <!--组织操作权限拦截-->

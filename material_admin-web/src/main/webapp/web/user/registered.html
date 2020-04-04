@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>注册页面</title>
     <link rel="stylesheet" media="screen" href="registered.css">
-    <script src="/static/jquery-1.11.3.js"></script>
-    <script src="registered.js"></script>
 </head>
 <body>
 <div class="xiao-container">
@@ -64,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="xiao-userPassword2-box" onmouseleave="checkPassword()">
+            <div class="xiao-userPassword2-box" onmouseleave="showCheckPassword()">
                 <span class="xiao-require">*</span>
                 <label for="userPassword2">密码确认</label>
                 <div class="xiao-userPassword2-input">
@@ -84,5 +82,8 @@
     </div>
 </div>
 
+
+<script src="/static/jquery-1.11.3.js"></script>
+<script src="registered.js"></script>
 </body>
 </html>

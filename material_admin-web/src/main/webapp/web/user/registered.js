@@ -35,6 +35,10 @@ function getOrgName(){
 
 
  function registered(){
+     if(!checkPassword()){
+         alert("两次输入密码不一致");
+         return;
+     }
     var json ={
         organization:$("#orgName").val(),
         organizationToken:$("#orgToken").val(),
@@ -65,4 +69,16 @@ function getOrgName(){
         }
     });
  }
+
+//核对密码是否一致
+function checkPassword(){
+    var password = $("#userPassword").val();
+    var password2 = $("#userPassword2").val();
+    return password === password2;
+}
+function showCheckPassword(){
+    if(!checkPassword()){
+        alert("两次输入密码不一致");
+    }
+}
 
