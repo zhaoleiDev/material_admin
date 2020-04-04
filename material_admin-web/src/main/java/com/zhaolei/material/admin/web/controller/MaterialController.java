@@ -5,7 +5,6 @@ import com.zhaolei.material.admin.common.tools.LoginContextUtils;
 import com.zhaolei.material.admin.domain.base.*;
 import com.zhaolei.material.admin.domain.dao.MaterialDO;
 import com.zhaolei.material.admin.domain.dao.UserDO;
-import com.zhaolei.material.admin.domain.vo.MaterialResponse;
 import com.zhaolei.material.admin.domain.vo.MaterialVO;
 import com.zhaolei.material.admin.service.MaterialService;
 import com.zhaolei.material.admin.service.UserService;
@@ -82,7 +81,7 @@ public class MaterialController {
     }
 
     @RequestMapping("/getOrgMaterial")
-    public Response getOrgMaterial(@RequestParam(required = false,defaultValue = "0") int pageNum,@RequestParam(required = false,defaultValue = "15") int pageSize){
+    public Response getOrgMaterial(@RequestParam(required = false,defaultValue = "1") int pageNum,@RequestParam(required = false,defaultValue = "15") int pageSize){
         String orgName = LoginContextUtils.getOrgName();
         Page page = new Page(pageNum,pageSize);
         ServiceResponse serviceResponse = materialService.getMaterialByOrg(orgName,page);

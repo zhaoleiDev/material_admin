@@ -58,11 +58,32 @@ function deleteMaterial(id){
 }
 
 function showPage(pageTotal){
-    for(var i=1;i<=pageTotal;i++){
+    for(var i=pageTotal;i>=1;i--){
         $("#div-page").prepend('<li><a href="#" onclick="getMaterialByPage('+i+')">'+i+'</a></li>');
     }
 }
 
 function getMaterialByPage(pageNum){
+    $.ajax({
+        type:"GET",
+        url:"/material/getOrgMaterial",
+        data:"pageNum="+pageNum+"&pageSize=15",
+        success:function(data){
+            if(data.code === 200){
+                dateList = data.data;
+                totalPage = Math.floor(data.page.total/pageSize)+1;
+                showDate(data.data);
+                showPage(totalPage);
+            }else if(data.code === 411){
+                window.location.href = loginPath;
+            }else{
+                alert(data.msg);
+            }
+        },
+        error:function(xhr){
+            console.log(xhr);
+            alert("程序错误");
+        }
+    });
 
 }

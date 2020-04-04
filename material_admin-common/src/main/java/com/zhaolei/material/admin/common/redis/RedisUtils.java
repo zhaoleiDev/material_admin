@@ -17,14 +17,15 @@ public class RedisUtils {
     static{
         jedisPool = ((RedisCli) ApplicationContextUtils.getContext().getBean("redisCli")).getJedisPool();
     }
-
+//======================================需要释放资源===========================================
     private static Jedis getJedis(){
+        Jedis jedis = null;
         try{
-            return jedisPool.getResource();
-        }catch(Exception e){
-            throw new RedisRuntimeException("获取jedis失败",e);
+            jedis= jedisPool.getResource();
+            return jedis;
+        }catch(Exception e) {
+            throw new RedisRuntimeException("获取jedis失败", e);
         }
-
     }
     public static String get(String key){
         return getJedis().get(key);
