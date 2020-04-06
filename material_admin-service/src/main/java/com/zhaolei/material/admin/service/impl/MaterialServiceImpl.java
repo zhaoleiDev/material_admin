@@ -12,6 +12,7 @@ import com.zhaolei.material.admin.domain.dao.UserDO;
 import com.zhaolei.material.admin.domain.vo.MaterialResponse;
 import com.zhaolei.material.admin.service.MaterialService;
 import com.zhaolei.material.admin.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ import java.util.List;
  * @author ZHAOLEI
  */
 @Service
+@Slf4j
 public class MaterialServiceImpl implements MaterialService {
     @Autowired
     private MaterialMapper materialMapper;
@@ -56,15 +58,17 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public ServiceResponse getMaterialByOrg(String orgName, Page page) {
         List<MaterialResponse> materialResponseList = new ArrayList<>();
-        //设置分页参数
-        PageHelper.startPage((page.getPageNum()-1)*page.getPageSize(),page.getPageSize());
+        //设置分页参数,直接传pageNum即可
+        PageHelper.startPage(page.getPageNum(),page.getPageSize());
         List<MaterialDO> list = materialMapper.getMaterialByOrg(orgName);
         //类型强转获取分页信息
-        PageInfo pageHepler = new PageInfo<>(list);
+        PageInfo pageHelper = new PageInfo<>(list);
         Page resPage = new Page();
-        resPage.setTotal((int)pageHepler.getTotal());
-        resPage.setPageNum(pageHepler.getPageNum());
-        resPage.setPageSize(pageHepler.getPageSize());
+        resPage.setTotal((int)pageHelper.getTotal());
+        resPage.setPageNum(pageHelper.getPageNum());
+        log.info("pageNum:{}",pageHelper.getPageNum());
+        resPage.setPageSize(pageHelper.getPageSize());
+        //类型转换以及获取物资负责人的信息
         for(MaterialDO materialDO:list){
             MaterialResponse materialResponse = new MaterialResponse();
             BeanUtils.copyProperties(materialDO,materialResponse);

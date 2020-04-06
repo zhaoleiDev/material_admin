@@ -75,7 +75,7 @@ public class LendBorrowMaterialServiceImpl implements LendBorrowMaterialService 
             RedisUtils.del(borrower.getStudentNum()+"borrow");
             return ServiceResponse.addInfo(ResponseEnum.SUCCESS);
         }catch(Exception e){
-            log.error("借出物资失败,material:{},lender:{},borrower:{}", JSON.toJSONString(lendBorrowMaterialDO),JSON.toJSONString(lender),JSON.toJSONString(borrower));
+            log.error("借出物资失败,material:{},lender:{},borrower:{}", JSON.toJSONString(lendBorrowMaterialDO),lender.getStudentNum(),borrower.getStudentNum());
             //手动回滚事务
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return ServiceResponse.addInfo(ResponseEnum.FAIL_OPERATION);

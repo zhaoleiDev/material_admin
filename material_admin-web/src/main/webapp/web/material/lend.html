@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>物资借出</title>
+    <link href="lend.css" rel="stylesheet">
+</head>
+<body>
+<div class="xiao-container">
+    <div class="xiao-register-box">
+        <div class="xiao-title-box">
+            <span>物资录入</span>
+        </div>
+        <form  method="post" enctype="multipart/form-data" id="materialForm">
+            <div class="xiao-stNum-box">
+                <span class="xiao-require">*</span>
+                <label for="stNum">借出数量</label>
+                <div class="xiao-stNum-input">
+                    <input type="text" id="stNum" name="materialName" placeholder="请输入借出数量(必填项)" />
+                </div>
+            </div>
+
+            <div class="xiao-userName-box">
+                <span class="xiao-require">*</span>
+                <label for="userName">对方学号</label>
+                <div class="xiao-userName-input">
+                    <input type="text" id="userName" name="totalNum" placeholder="请输入对方学号(必填项)"/>
+                </div>
+            </div>
+
+            <div class="xiao-time-box">
+                <span class="xiao-require">*</span>
+                <label for="time">归还日期</label>
+                <div class="xiao-time-input">
+                    <input type="date" id="time" />
+                </div>
+            </div>
+
+            <div class="xiao-submit-box" onclick="lendMaterial()">
+                提交
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="/static/jquery-1.11.3.js"></script>
+<script src="lend.js"></script>
+</body>
+</html>

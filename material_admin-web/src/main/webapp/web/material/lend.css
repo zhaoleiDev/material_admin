@@ -12,7 +12,7 @@ input{
 }
 .xiao-register-box{
     position: relative;
-    height: 570px;
+    height: 400px;
     width: 700px;
     top: 50px;
     margin: 0 auto;
@@ -69,14 +69,14 @@ input{
     display: inline-block;
     margin-left: 28px;
 }
-
 #userName{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
     border-radius: 5px;
 }
-.xiao-orgName-box{
+
+.xiao-time-box{
     position: absolute;
     width: 420px;
     height: 40px;
@@ -85,54 +85,15 @@ input{
     margin-left:80px;
     font-weight: 700;
 }
-.xiao-orgName-input{
+.xiao-time-input{
     display: inline-block;
     margin-left: 28px;
 }
-#orgName{
+#time{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
     border-radius: 5px;
-}
-.xiao-orgToken-box{
-    position: absolute;
-    width: 420px;
-    height: 40px;
-    line-height: 40px;
-    margin-top:340px;
-    margin-left:80px;
-    font-weight: 700;
-}
-.xiao-orgToken-input{
-    display: inline-block;
-    margin-left: 40px;
-}
-#orgToken{
-    height: 35px;
-    width: 290px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.xiao-photo-box{
-    position: absolute;
-    width: 420px;
-    height: 40px;
-    line-height: 40px;
-    margin-top:420px;
-    margin-left:80px;
-    font-weight: 700;
-}
-.xiao-photo-input{
-    display: inline-block;
-    margin-left: 50px;
-}
-#photo{
-    height: 35px;
-    width: 290px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
 }
 
 .xiao-submit-box{
@@ -140,7 +101,7 @@ input{
     width: 250px;
     height: 40px;
     line-height: 40px;
-    margin-top: 500px;
+    margin-top: 340px;
     margin-left:200px;
     border-radius: 5px;
     background: dodgerblue;

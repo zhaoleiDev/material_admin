@@ -4,6 +4,7 @@ import com.zhaolei.material.admin.common.tools.*;
 import com.zhaolei.material.admin.domain.base.Response;
 import com.zhaolei.material.admin.domain.base.ResponseEnum;
 import com.zhaolei.material.admin.domain.dao.UserDO;
+import com.zhaolei.material.admin.domain.vo.UserResponse;
 import com.zhaolei.material.admin.domain.vo.UserVO;
 import com.zhaolei.material.admin.service.UserService;
 import com.zhaolei.material.admin.common.tools.LoginContextUtils;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ZHAOLEI
@@ -113,6 +116,19 @@ public class UserController {
             return Response.success();
         }
         return Response.fail();
+    }
+
+    @RequestMapping("/getOrgMember")
+    public Response getOrgMember(){
+        String org = LoginContextUtils.getOrgName();
+        List<UserDO> userDOList = userService.getOrgMember(org);
+        List<UserResponse> userResponseList = new ArrayList<>();
+        for(UserDO userDO:userDOList){
+            UserResponse userResponse = new UserResponse();
+            BeanUtils.copyProperties(userDO,userResponse);
+            userResponseList.add(userResponse);
+        }
+        return Response.success(userResponseList);
     }
 
 

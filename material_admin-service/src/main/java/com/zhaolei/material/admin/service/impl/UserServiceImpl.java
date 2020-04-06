@@ -12,13 +12,17 @@ import com.zhaolei.material.admin.domain.base.ServiceResponse;
 import com.zhaolei.material.admin.domain.dao.OrganizationDO;
 import com.zhaolei.material.admin.domain.dao.UserDO;
 import com.zhaolei.material.admin.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author ZHAOLEI
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
@@ -66,7 +70,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDO> getOrgMember(String orgName) {
+        //redis中key
+        String key = orgName+"userMember";
+        String jsonStr = RedisUtils.get(key);
+        if(jsonStr == null){
+            List<UserDO> list = userMapper.getUserByOrg(orgName);
+            String value = JSON.toJSONString(list);
+            //即使数据库值为null也下redis中set值
+            RedisUtils.setRandomEx(key, value,TimeUtils.TWO_MINUTE_S);
+            return list;
+        }
+        return JSON.parseArray(jsonStr,UserDO.class);
+    }
+
+    @Override
     public UserDO getUerByStNum(String stNum) {
+        if(stNum == null){
+            return null;
+        }
+        long time = System.currentTimeMillis();
         String jsonStr = RedisUtils.get(stNum);
         if(jsonStr == null){
             UserDO userDO = userMapper.selectByStNum(stNum);
@@ -75,6 +98,8 @@ public class UserServiceImpl implements UserService {
             RedisUtils.setRandomEx(stNum, value,TimeUtils.TEN_MINUTE_S);
             return userDO;
         }
+        log.info("getUerByStNum接口耗时:{}",System.currentTimeMillis()-time);
+        log.info("stNum:{},json串:{}",stNum,jsonStr);
         return JSON.parseObject(jsonStr,UserDO.class);
     }
 

@@ -17,27 +17,38 @@ public class RedisUtils {
     static{
         jedisPool = ((RedisCli) ApplicationContextUtils.getContext().getBean("redisCli")).getJedisPool();
     }
-//======================================需要释放资源===========================================
     private static Jedis getJedis(){
-        Jedis jedis = null;
-        try{
-            jedis= jedisPool.getResource();
+        try (Jedis jedis = jedisPool.getResource()) {
             return jedis;
-        }catch(Exception e) {
+        } catch (Exception e) {
             throw new RedisRuntimeException("获取jedis失败", e);
         }
     }
+
     public static String get(String key){
-        return getJedis().get(key);
+        //使用 try with resource 编译后会自动调用close方法
+        try(Jedis jedis = jedisPool.getResource() ) {
+            return jedis.get(key);
+        } catch (Exception e) {
+            throw new RedisRuntimeException("redis操作失败", e);
+        }
     }
 
     public static String set(String key,String value){
-        return getJedis().set(key,value);
+        try(Jedis jedis = jedisPool.getResource() ) {
+            return jedis.set(key,value);
+        } catch (Exception e) {
+            throw new RedisRuntimeException("redis操作set失败", e);
+        }
     }
 
 
     public static String set(byte[] key,byte[] value){
-        return getJedis().set(key,value);
+        try(Jedis jedis = jedisPool.getResource() ) {
+            return jedis.set(key,value);
+        } catch (Exception e) {
+            throw new RedisRuntimeException("redis操作set失败", e);
+        }
     }
     public static String setRandomEx(String key, String value, Integer ex){
         int min = 50;
@@ -45,14 +56,26 @@ public class RedisUtils {
         Random random = new Random();
         //防止缓存雪崩，在存活时间后加一个随机值
         ex = ex + random.nextInt(min)%(max-min+1)+min;
-        return getJedis().setex(key,ex,value);
+        try(Jedis jedis = jedisPool.getResource() ) {
+            return jedis.setex(key,ex,value);
+        } catch (Exception e) {
+            throw new RedisRuntimeException("redis操作setRandomEx失败", e);
+        }
     }
     public static String setex(String key, Integer ex,String value){
-        return getJedis().setex(key,ex,value);
+        try(Jedis jedis = jedisPool.getResource() ) {
+            return jedis.setex(key,ex,value);
+        } catch (Exception e) {
+            throw new RedisRuntimeException("redis操作setex失败", e);
+        }
     }
 
     public static void  del(String key){
-        getJedis().del(key);
+        try(Jedis jedis = jedisPool.getResource() ) {
+            jedis.del(key);
+        } catch (Exception e) {
+            throw new RedisRuntimeException("redis操作del失败", e);
+        }
     }
 
 

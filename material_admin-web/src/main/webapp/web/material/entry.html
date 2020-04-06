@@ -6,16 +6,62 @@
     <link rel="stylesheet" href="entry.css">
 </head>
 <body>
-<form>
-   名称:&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" placeholder="请输入物资名称">
-    <br>
-    总数量:&nbsp&nbsp&nbsp&nbsp<input type="text" placeholder="请输入物资总数量">
-    <br>
-    可借出数量:&nbsp&nbsp<input type="text" placeholder="请输入可借出数量">
-    <br>
-    负责人学号:&nbsp&nbsp<input type="text" placeholder="请输入负责人学号">
-    <br>
-    <button>提交</button>
-</form>
+<div class="xiao-container">
+    <div class="xiao-register-box">
+        <div class="xiao-title-box">
+            <span>物资录入</span>
+        </div>
+        <form  method="post" enctype="multipart/form-data" id="materialForm">
+            <div class="xiao-stNum-box">
+                <span class="xiao-require">*</span>
+                <label for="stNum"> 物资名称</label>
+                <div class="xiao-stNum-input">
+                    <input type="text" id="stNum" name="materialName" placeholder="请输入物资名称,必填项" />
+                </div>
+            </div>
+
+            <div class="xiao-userName-box">
+                <span class="xiao-require">*</span>
+                <label for="userName">物资总量</label>
+                <div class="xiao-userName-input">
+                    <input type="text" id="userName" name="totalNum" placeholder="请输入物资的总数量,必填项"/>
+                </div>
+            </div>
+
+            <div class="xiao-orgName-box">
+                <span class="xiao-require">*</span>
+                <label for="orgName">可借出量</label>
+                <div class="xiao-orgName-input">
+                    <input type="text" id="orgName" name="lendNum" placeholder="请输入可借出的数量,必填项"/>
+                </div>
+            </div>
+
+            <div class="xiao-orgToken-box">
+                <span class="xiao-require">*</span>
+                <label for="orgToken">负责人</label>
+                <div class="xiao-orgToken-input">
+                     <select id="orgToken" name="principalStNum">
+                       <option >请选择(物资负责人),必填项</option>
+                   </select>>
+                </div>
+            </div>
+            <div class="xiao-photo-box">
+                <span class="xiao-require">*</span>
+                <label for="photo">图片</label>
+                <div class="xiao-photo-input">
+                   <input id="photo" type="file" name="materialPhoto" placeholder="请选择物资图片">
+                </div>
+            </div>
+
+            <div class="xiao-submit-box" onclick="submit()">
+                提交
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="/static/jquery-1.11.3.js"></script>
+<script src="entry.js"></script>
 </body>
 </html>

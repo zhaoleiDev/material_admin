@@ -38,7 +38,7 @@
             <mvc:mapping path="/user/*"/>
             <mvc:mapping path="/org/*"/>
             <mvc:mapping path="/material/*"/>
-            <mvc:mapping path="/lendBorrow/"/>
+            <mvc:mapping path="/lendBorrow/*"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/registered"/>
             <mvc:exclude-mapping path="/org/getAllOrg"/>
@@ -53,5 +53,13 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!-- 上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 最大内存大小 -->
+        <property name="maxInMemorySize" value="5242880"/>
+        <!-- 最大文件大小，-1为不限制大小 -->
+        <property name="maxUploadSize" value="-1"/>
+    </bean>
 
 </beans>

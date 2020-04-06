@@ -74,8 +74,9 @@ public class RedisCli {
             config.setMaxIdle(maxIdle);
             //最大等待时间
             config.setMaxWaitMillis(maxWaitMillis);
-            //引入redis实例时检查其是否可用
-            config.setTestOnBorrow(testOnBorrow);
+            /*引入redis实例时检查其是否可用
+            若开启,每一次获取redis实例时会先ping一下redis,才进行命令的发送，并且出现了有get命令直接返回PONG
+            config.setTestOnBorrow(testOnBorrow);*/
             return new JedisPool(config, host, port);
         }catch(Exception e){
             throw new RedisRuntimeException("获取jedispool失败",e);

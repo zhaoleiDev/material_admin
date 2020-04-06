@@ -3,6 +3,8 @@ package com.zhaolei.material.admin.dao.graduation;
 import com.zhaolei.material.admin.dao.base.ISqlMapper;
 import com.zhaolei.material.admin.domain.dao.UserDO;
 
+import java.util.List;
+
 /**
  * @author ZHAOLEI
  */
@@ -55,5 +57,12 @@ public interface UserMapper extends ISqlMapper {
      * @return 用户信息
      */
     UserDO selectByStNum(String stNum);
+
+    /**
+     * 根据组织名称获取成员
+     * @param orgName 组织名称
+     * @return 结果集
+     */
+    List<UserDO> getUserByOrg(String orgName);
 
 }

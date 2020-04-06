@@ -1,5 +1,5 @@
 var totalPage;
-var pageSize=15;
+var pageSize=13;
 var dateList;
 var loginPath="/web/login.html";
 $.ajax({
@@ -23,21 +23,22 @@ $.ajax({
     }
 });
 function showDate(list){
+    $(".tr-data").hide();
     for(var i=0;i<list.length;i++){
-        $("#orgMaterial").prepend('<tr>'+
-            '<th>'+list[i].materialName+'</th>'+
-            '<th>'+list[i].totalNum+'</th>'+
-            '<th>'+list[i].lendNum+'</th>'+
-            '<th>'+list[i].principalName+'</th>'+
-            '<th>'+list[i].principalPhoneNum+'</th>'+
-            '<th>'+'<a href='+list[i].photoPath+'>详情</a>'+'</th>'+
-            '<th>'+'<a href="updateMaterial.html">修改</a>'+'&nbsp&nbsp'+'<a id="del-material" onclick="deleteMaterial('+list[i].id+')">删除</a>'+'</th>'+
+        $("#orgMaterial").prepend('<tr class="tr-data">'+
+            '<td>'+list[i].materialName+'</td>'+
+            '<td>'+list[i].totalNum+'</td>'+
+            '<td>'+list[i].lendNum+'</td>'+
+            '<td>'+list[i].principalName+'</td>'+
+            '<td>'+list[i].principalPhoneNum+'</td>'+
+            '<td>'+'<a href='+list[i].photoPath+'>详情</a>'+'</td>'+
+            '<td>'+'<a id="del-material" onclick="lend('+list[i].id+')">借出</a>'+'&nbsp&nbsp'+'<a href="updateMaterial.html?id='+list[i].id+'">修改</a>'+'&nbsp&nbsp'+'<a id="del-material" onclick="deleteMaterial('+list[i].id+')">删除</a>'+'</td>'+
             '</tr>');
     }
 }
 
 function deleteMaterial(id){
-    alert("确认删除id为"+id+"的物资"+"\n"+"!!!!!!");
+    alert("确认删除!!!!!!");
     $.ajax({
         type:"POST",
         url:"/material/delete",
@@ -67,13 +68,12 @@ function getMaterialByPage(pageNum){
     $.ajax({
         type:"GET",
         url:"/material/getOrgMaterial",
-        data:"pageNum="+pageNum+"&pageSize=15",
+        data:"pageNum="+pageNum+"&pageSize=13",
         success:function(data){
             if(data.code === 200){
                 dateList = data.data;
                 totalPage = Math.floor(data.page.total/pageSize)+1;
                 showDate(data.data);
-                showPage(totalPage);
             }else if(data.code === 411){
                 window.location.href = loginPath;
             }else{
@@ -85,5 +85,8 @@ function getMaterialByPage(pageNum){
             alert("程序错误");
         }
     });
+}
 
+function lend(id){
+    window.location.href = "lend.html?materialId="+id;
 }
