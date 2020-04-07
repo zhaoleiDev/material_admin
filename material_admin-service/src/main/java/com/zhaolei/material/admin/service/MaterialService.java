@@ -63,4 +63,12 @@ public interface MaterialService {
      * @return 返回
      */
     boolean addLendNumById(Integer id, Integer addNum);
+
+    /**
+     * 根据传入条件查询对应的物资记录
+     * @param materialDO 传入条件
+     * @param page 分页信息
+     * @return 结果集
+     */
+    ServiceResponse searchMaterial(MaterialDO materialDO,Page page);
 }

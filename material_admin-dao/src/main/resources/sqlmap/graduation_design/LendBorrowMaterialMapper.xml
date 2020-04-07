@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaolei.material.admin.dao.graduation.LendBorrowMaterialMapper">
+  <resultMap id="BaseResultMap" type="lendBorrowMaterial">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="material_id" jdbcType="INTEGER" property="materialId" />
+    <result column="number" jdbcType="SMALLINT" property="number" />
+    <result column="lend_st_num" jdbcType="VARCHAR" property="lendStNum" />
+    <result column="lend_org" jdbcType="VARCHAR" property="lendOrg" />
+    <result column="borrow_st_num" jdbcType="VARCHAR" property="borrowStNum" />
+    <result column="borrow_org" jdbcType="VARCHAR" property="borrowOrg" />
+    <result column="operation_time" jdbcType="TIMESTAMP" property="operationTime" />
+    <result column="revert_time" jdbcType="TIMESTAMP" property="revertTime" />
+    <result column="promise_time" jdbcType="TIMESTAMP" property="promiseTime" />
+    <result column="ack_revert_st_num" jdbcType="VARCHAR" property="ackRevertStNum" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, material_id, number, lend_st_num, lend_org, borrow_st_num, borrow_org, operation_time,
+    revert_time, promise_time, ack_revert_st_num, memo
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lend_borrow_material
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lend_borrow_material
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="lendBorrowMaterial">
+    insert into lend_borrow_material (material_id, number,
+      lend_st_num, lend_org, borrow_st_num, 
+      borrow_org, operation_time, revert_time,
+      promise_time, ack_revert_st_num, memo
+      )
+    values (#{id,jdbcType=INTEGER}, #{materialId,jdbcType=INTEGER}, #{number,jdbcType=SMALLINT}, 
+      #{lendStNum,jdbcType=VARCHAR}, #{lendOrg,jdbcType=VARCHAR}, #{borrowStNum,jdbcType=VARCHAR}, 
+      #{borrowOrg,jdbcType=VARCHAR},now(), #{revertTime,jdbcType=TIMESTAMP},
+      #{promiseTime,jdbcType=TIMESTAMP}, #{ackRevertStNum,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="lendBorrowMaterial">
+    insert into lend_borrow_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="materialId != null">
+        material_id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="lendStNum != null">
+        lend_st_num,
+      </if>
+      <if test="lendOrg != null">
+        lend_org,
+      </if>
+      <if test="borrowStNum != null">
+        borrow_st_num,
+      </if>
+      <if test="borrowOrg != null">
+        borrow_org,
+      </if>
+      operation_time,
+      <if test="revertTime != null">
+        revert_time,
+      </if>
+      <if test="promiseTime != null">
+        promise_time,
+      </if>
+      <if test="ackRevertStNum != null">
+        ack_revert_st_num,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="materialId != null">
+        #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=SMALLINT},
+      </if>
+      <if test="lendStNum != null">
+        #{lendStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="lendOrg != null">
+        #{lendOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowStNum != null">
+        #{borrowStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowOrg != null">
+        #{borrowOrg,jdbcType=VARCHAR},
+      </if>
+      now(),
+      <if test="revertTime != null">
+        #{revertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promiseTime != null">
+        #{promiseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ackRevertStNum != null">
+        #{ackRevertStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="lendBorrowMaterial">
+    update lend_borrow_material
+    <set>
+      <if test="materialId != null">
+        material_id = #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=SMALLINT},
+      </if>
+      <if test="lendStNum != null">
+        lend_st_num = #{lendStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="lendOrg != null">
+        lend_org = #{lendOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowStNum != null">
+        borrow_st_num = #{borrowStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowOrg != null">
+        borrow_org = #{borrowOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="revertTime != null">
+        revert_time = #{revertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promiseTime != null">
+        promise_time = #{promiseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ackRevertStNum != null">
+        ack_revert_st_num = #{ackRevertStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="lendBorrowMaterial">
+    update lend_borrow_material
+    set material_id = #{materialId,jdbcType=INTEGER},
+      number = #{number,jdbcType=SMALLINT},
+      lend_st_num = #{lendStNum,jdbcType=VARCHAR},
+      lend_org = #{lendOrg,jdbcType=VARCHAR},
+      borrow_st_num = #{borrowStNum,jdbcType=VARCHAR},
+      borrow_org = #{borrowOrg,jdbcType=VARCHAR},
+      revert_time = #{revertTime,jdbcType=TIMESTAMP},
+      promise_time = #{promiseTime,jdbcType=TIMESTAMP},
+      ack_revert_st_num = #{ackRevertStNum,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBySelective" resultMap="BaseResultMap" parameterType="lendBorrowMaterial">
+    select
+    <include refid="Base_Column_List"></include>
+    from lend_borrow_material
+    <where>
+      <if test="lendStNum != null and testStNum != ''">
+        lend_st_num = #{lendStNum,jdbcType=VARCHAR}
+      </if>
+      <if test="lendStNum != null and testStNum != ''">
+        and lend_org = #{lendOrg,jdbcType=VARCHAR}
+      </if>
+      <if test="lendStNum != null and testStNum != ''">
+        and borrow_st_num = #{borrowStNum,jdbcType=VARCHAR}
+      </if>
+      <if test="lendStNum != null and testStNum != ''">
+        and borrow_org = #{borrowOrg,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by promise_time
+  </select>
+</mapper>

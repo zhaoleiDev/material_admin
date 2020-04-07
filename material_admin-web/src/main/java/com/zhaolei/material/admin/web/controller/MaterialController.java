@@ -116,8 +116,11 @@ public class MaterialController {
 
 
     @RequestMapping("/searchMaterial")
-    public Response searchMaterial(){
-        return null;
+    public Response searchMaterial(MaterialVO materialVO,@RequestParam(required = false,defaultValue = "1") int pageNum,@RequestParam(required = false,defaultValue = "13") int pageSize){
+        Page page = new Page(pageNum,pageSize);
+        MaterialDO materialDO = new MaterialDO();
+        BeanUtils.copyProperties(materialVO,materialDO);
+        return Response.parseResponse(materialService.searchMaterial(materialDO,page));
     }
 
 }

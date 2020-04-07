@@ -74,4 +74,11 @@ public interface MaterialMapper extends ISqlMapper {
      * @return 返回
      */
     int updateLendNumById(@Param("id")Integer id, @Param("addNum")Integer addNum);
+
+    /**
+     * 根据查询条件返回对应的结果集
+     * @param materialDO 查询条件
+     * @return 结果集
+     */
+    List<MaterialDO> search(MaterialDO materialDO);
 }

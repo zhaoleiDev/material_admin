@@ -36,5 +36,10 @@ public class MaterialVO implements Serializable {
      */
     private String principalStNum;
 
+    /**
+     * 所属组织
+     */
+    private String orgName;
+
 
 }

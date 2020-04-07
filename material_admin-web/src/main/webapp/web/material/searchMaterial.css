@@ -1,0 +1,46 @@
+table{
+    border-collapse:collapse;
+}
+thead tr{
+    background: #13E8E9;
+    border-bottom: solid;
+}
+#div1 {
+    height: 50px;
+}
+
+#div-materialName{
+    height: 30px;
+    width: 500px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left:20px;
+}
+#materialName{
+    height: 30px;
+    width: 200px;
+}
+#div-orgName{
+    height: 30px;
+    width: 500px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left:600px;
+}
+#orgName{
+    height: 30px;
+    width: 200px;
+}
+#div-search{
+    position: absolute;
+    margin-top: 10px;
+    margin-left:1200px;
+}
+#div-button{
+    background: dodgerblue;
+    width: 100px;
+}
+#div-ul{
+    position:relative;
+    left:48%;
+}

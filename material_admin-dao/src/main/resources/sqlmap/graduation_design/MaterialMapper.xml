@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaolei.material.admin.dao.graduation.MaterialMapper">
+  <resultMap id="BaseResultMap" type="material">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="material_name" jdbcType="VARCHAR" property="materialName" />
+    <result column="total_num" jdbcType="SMALLINT" property="totalNum" />
+    <result column="lend_num" jdbcType="SMALLINT" property="lendNum" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="update_st_num" jdbcType="VARCHAR" property="updateStNum" />
+    <result column="principal_st_num" jdbcType="VARCHAR" property="principalStNum" />
+    <result column="photo_path" jdbcType="VARCHAR" property="photoPath" />
+    <result column="status_info" jdbcType="TINYINT" property="statusInfo" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, material_name, total_num, lend_num, org_name, update_st_num, principal_st_num, 
+    photo_path, status_info, update_time, create_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from total_material
+    where id = #{id,jdbcType=INTEGER} and status_info =1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from total_material
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="material">
+    insert into total_material ( material_name, total_num,
+      lend_num, org_name, update_st_num, 
+      principal_st_num, photo_path,
+      update_time, create_time)
+    values ( #{materialName,jdbcType=VARCHAR}, #{totalNum,jdbcType=SMALLINT},
+      #{lendNum,jdbcType=SMALLINT}, #{orgName,jdbcType=VARCHAR}, #{updateStNum,jdbcType=VARCHAR}, 
+      #{principalStNum,jdbcType=VARCHAR}, #{photoPath,jdbcType=VARCHAR},
+      now(),now())
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="material">
+    insert into total_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="materialName != null">
+        material_name,
+      </if>
+      <if test="totalNum != null">
+        total_num,
+      </if>
+      <if test="lendNum != null">
+        lend_num,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="updateStNum != null">
+        update_st_num,
+      </if>
+      <if test="principalStNum != null">
+        principal_st_num,
+      </if>
+      <if test="photoPath != null">
+        photo_path,
+      </if>
+      update_time,create_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="materialName != null">
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null">
+        #{totalNum,jdbcType=SMALLINT},
+      </if>
+      <if test="lendNum != null">
+        #{lendNum,jdbcType=SMALLINT},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateStNum != null">
+        #{updateStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="principalStNum != null">
+        #{principalStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath != null">
+        #{photoPath,jdbcType=VARCHAR},
+      </if>
+      now(),now()
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="material">
+    update total_material
+    <set>
+      <if test="materialName != null">
+        material_name = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null">
+        total_num = #{totalNum,jdbcType=SMALLINT},
+      </if>
+      <if test="lendNum != null">
+        lend_num = #{lendNum,jdbcType=SMALLINT},
+      </if>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateStNum != null">
+        update_st_num = #{updateStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="principalStNum != null">
+        principal_st_num = #{principalStNum,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath != null">
+        photo_path = #{photoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="statusInfo != null">
+        status_info = #{statusInfo,jdbcType=TINYINT},
+      </if>
+      update_time = now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="material">
+    update total_material
+    set material_name = #{materialName,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=SMALLINT},
+      lend_num = #{lendNum,jdbcType=SMALLINT},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      update_st_num = #{updateStNum,jdbcType=VARCHAR},
+      principal_st_num = #{principalStNum,jdbcType=VARCHAR},
+      photo_path = #{photoPath,jdbcType=VARCHAR},
+      status_info = #{statusInfo,jdbcType=TINYINT},
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getMaterialByOrg" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from total_material
+    where org_name = #{orgName,jdbcType=VARCHAR} and status_info=1
+  </select>
+
+  <select id="getMaterialLendNumById" resultMap="BaseResultMap">
+    select id, material_name, total_num, lend_num, org_name, principal_st_num,
+    photo_path, status_info
+    from total_material
+    where id = #{id,jdbcType=INTEGER} and status_info =1 for update
+  </select>
+
+  <update id="updateLendNumById">
+    update total_material set lend_num = lend_num + #{addNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="search" parameterType="material" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from total_material
+    <where>
+      <if test="orgName != null and orgName !='' ">
+        org_name = #{orgName,jdbcType=VARCHAR}
+      </if>
+      and status_info =1
+      <if test="materialName != null and materialName !=''">
+        and material_name like "%"#{materialName,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
+  </select>
+</mapper>

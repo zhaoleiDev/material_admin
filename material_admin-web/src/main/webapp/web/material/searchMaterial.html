@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询</title>
+    <link rel="stylesheet" href="searchMaterial.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script src="searchMaterial.js"></script>
+</head>
+<body>
+<div id="div1">
+    <div id="div-materialName">
+        <label for="materialName">物资名称:</label>
+        <input type="text" id="materialName" placeholder="请输入物资名称">
+    </div>
+
+    <div id="div-orgName">
+        <label for = "orgName" >组织名称:</label>
+        <select id="orgName">
+            <option>请选择</option>
+        </select>
+    </div>
+    <div id="div-search">
+        <button id="div-button" onclick="search()">查询</button>
+    </div>
+
+
+</div>
+<table  class="table" id="orgMaterial">
+    <thead>
+    <tr>
+        <th>
+            名称
+        </th>
+        <th>
+            组织
+        </th>
+        <th>
+            可借出数量
+        </th>
+        <th>
+            负责人
+        </th>
+        <th>
+            联系电话
+        </th>
+        <th>
+            图片
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<ul class="pagination" id="div-page">
+</ul>
+</body>
+</html>

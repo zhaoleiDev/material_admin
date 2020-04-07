@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 与物资表相关统一不走缓存，因为从业务上有根据组织查询物资的需求
- * 只有有任何一个组员有物资的借入借出、归还确认依据物资的更新都会使组织物资信息发生变化
+ *
  * @author ZHAOLEI
  */
 @Service
@@ -95,5 +94,30 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public boolean addLendNumById(Integer id , Integer addNum) {
         return materialMapper.updateLendNumById(id,addNum)>0;
+    }
+
+    @Override
+    public ServiceResponse searchMaterial(MaterialDO materialDO,Page page) {
+        List<MaterialResponse> materialResponseList = new ArrayList<>();
+        //分页查询
+        PageHelper.startPage(page.getPageNum(),page.getPageSize());
+        List<MaterialDO> materialDOList = materialMapper.search(materialDO);
+        //获取分页信息
+        PageInfo pageInfo = new PageInfo<>(materialDOList);
+        Page pageRes = new Page();
+        pageRes.setPageSize(pageInfo.getPageSize());
+        pageRes.setPageNum(pageInfo.getPageNum());
+        pageRes.setTotal((int)pageInfo.getTotal());
+        //类型转换，负责人信息查询
+        for(MaterialDO material : materialDOList){
+            MaterialResponse materialResponse = new MaterialResponse();
+            BeanUtils.copyProperties(material,materialResponse);
+            //获取负责人信息
+            UserDO principal = userService.getUerByStNum(materialResponse.getPrincipalStNum());
+            materialResponse.setPrincipalName(principal.getUserName());
+            materialResponse.setPrincipalPhoneNum(principal.getPhoneNum());
+            materialResponseList.add(materialResponse);
+        }
+        return ServiceResponse.addInfo(ResponseEnum.SUCCESS,materialResponseList,pageRes);
     }
 }
