@@ -29,6 +29,7 @@ function lendMaterial(){
         success:function(data){
             if(data.code === 200){
                alert("借出成功");
+               window.location.href = "../web/lendBorrowMaterial/personalLend.html"
             }else if(data.code === 411){
                 window.location.href = "web/login.html"
             }else{

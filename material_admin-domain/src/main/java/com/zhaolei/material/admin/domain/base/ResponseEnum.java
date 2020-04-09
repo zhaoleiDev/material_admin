@@ -22,8 +22,9 @@ public enum ResponseEnum {
     BORROWER_NOT_REGISTERED(419,"对方未注册,借出失败"),
     STOCK_LOW(420,"库存不够"),
     MATERIAL_NOT_EXIST(421,"物资不存在"),
-    PRINCIPAL_NOT_REGISTERED(422,"负责人未注册")
-
+    PRINCIPAL_NOT_REGISTERED(422,"负责人未注册"),
+    FAIL_SEARCH(423,"查询失败"),
+    PRINCIPAL_EXIT(424,"该学号已是负责人")
     ;
     private int code;
     private String msg;

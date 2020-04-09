@@ -2,12 +2,24 @@ table{
     border-collapse:collapse;
 }
 thead tr{
-    background: #13E8E9;
+    background: antiquewhite;
     border-bottom: solid;
 }
-#div1 {
+#div{
     height: 50px;
+}
+#div-title{
+    position: absolute;
+    width: 150px;
+    margin-top: 10px;
+    margin-left: 700px;
     font-size: x-large;
+}
+#div1 {
+    position: absolute;
+    font-size: x-large;
+    margin-top: 0px;
+    margin-left: 1250px;
 }
 #div1 a{
     font-size: x-large;

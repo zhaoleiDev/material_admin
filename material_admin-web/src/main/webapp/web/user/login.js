@@ -8,7 +8,7 @@ function login(){
         success:function(data){
             if(data.code === 410){
                 alert("未注册用户");
-                window.location.href = "/web/user/registered.html";
+                window.location.href = "../web/registered.html";
             }else if(data.code === 200){
                 window.location.href = "total.html";
             }else{
@@ -22,5 +22,5 @@ function login(){
     });
 }
 function registered(){
-    window.location.href = "/web/user/registered.html";
+    window.location.href = "../web/registered.html";
 }

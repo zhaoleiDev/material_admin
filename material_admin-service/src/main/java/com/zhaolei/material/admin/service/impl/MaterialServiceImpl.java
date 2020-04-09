@@ -65,7 +65,6 @@ public class MaterialServiceImpl implements MaterialService {
         Page resPage = new Page();
         resPage.setTotal((int)pageHelper.getTotal());
         resPage.setPageNum(pageHelper.getPageNum());
-        log.info("pageNum:{}",pageHelper.getPageNum());
         resPage.setPageSize(pageHelper.getPageSize());
         //类型转换以及获取物资负责人的信息
         for(MaterialDO materialDO:list){

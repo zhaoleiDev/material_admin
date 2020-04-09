@@ -1,0 +1,128 @@
+#div-title{
+    height: 40px;
+    background: antiquewhite;
+}
+#title{
+    margin-left: 700px;
+    font-size: x-large;
+}
+#div1{
+    background: aliceblue;
+    height:680px;
+    width:150px;
+    position: absolute;
+    margin-top: 0px;
+}
+
+#div-search{
+    position: relative;
+    margin-top: 30px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-org-material{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-lend{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-borrow{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-org-lend{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-org-borrow{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-usr-info{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 25px;
+    font-size:larger;
+}
+#div-org-member{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-operation-guid{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size:larger;
+}
+#div-explanation{
+    position:absolute;
+    margin-left: 150px;
+    width: 1350px;
+    height: 680px;
+}
+#div-welcome{
+    position: relative;
+    font-size:xx-large ;
+    margin-top: 180px;
+    margin-left: 450px;
+}
+#div-operation{
+    position: relative;
+    font-size: x-large;
+    margin-top: 50px;
+    margin-left: 490px;
+
+
+}
+#div-email{
+    position: relative;
+    font-size: x-large;
+    margin-top: 50px;
+    margin-left: 420px;
+}
+
+#div-login-registered{
+    position: relative;
+    margin-top: 50px;
+    font-size: x-large;
+}
+#div-login{
+    width: 150px;
+    position: absolute;
+    margin-left: 390px;
+    font-size: x-large;
+}
+#div-registered{
+    width: 150px;
+    position: absolute;
+    font-size: x-large;
+    margin-left: 630px;
+}
+#div-signOut{
+    width: 150px;
+    position: absolute;
+    font-size: x-large;
+    margin-left: 840px;
+}
+.menu{
+    margin-left: 45px;
+}
+.s-menu{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+

@@ -41,11 +41,11 @@ public class ServiceResponse<T> {
         this.page = page;
     }
 
-    private void setCode(int code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    private void setMsg(String msg) {
+    public void setMsg(String msg) {
         this.msg = msg;
     }
 
@@ -63,5 +63,15 @@ public class ServiceResponse<T> {
 
     public T getData() {
         return data;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceResponse{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", page=" + page +
+                ", data=" + data +
+                '}';
     }
 }

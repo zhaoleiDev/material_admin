@@ -1,0 +1,16 @@
+.div-dec{
+    font-size: x-large;
+    color: red;
+    position:relative;
+    margin-top: 20px;
+}
+
+.dec{
+    position:relative;
+    margin-left: 50px;
+    margin-top: 10px;
+    font-size: larger;
+}
+.div-warm{
+    color: red;
+}

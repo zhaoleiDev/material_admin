@@ -2,23 +2,27 @@ table{
     border-collapse:collapse;
 }
 thead tr{
-    background: #13E8E9;
+    background: antiquewhite;
     border-bottom: solid;
 }
 #div1 {
-    height: 50px;
+    height: 80px;
+}
+.label-title{
+    font-size: x-large;
 }
 
 #div-materialName{
-    height: 30px;
+    height: 60px;
     width: 500px;
     position: absolute;
     margin-top: 10px;
     margin-left:20px;
 }
 #materialName{
-    height: 30px;
-    width: 200px;
+    height: 45px;
+    width: 300px;
+    font-size: x-large;
 }
 #div-orgName{
     height: 30px;
@@ -28,19 +32,21 @@ thead tr{
     margin-left:600px;
 }
 #orgName{
-    height: 30px;
-    width: 200px;
+    height: 45px;
+    width: 300px;
+    font-size: x-large;
 }
 #div-search{
     position: absolute;
-    margin-top: 10px;
-    margin-left:1200px;
+    margin-top: 20px;
+    margin-left:1100px;
 }
 #div-button{
-    background: dodgerblue;
-    width: 100px;
+    background: blueviolet;
+    width: 150px;
+    height: 30px;
 }
-#div-ul{
+#div-page{
     position:relative;
-    left:48%;
+    left:40%;
 }

@@ -3,8 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>我的借入</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="personalBorrow.css">
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script src="personalBorrow.js"></script>
 </head>
 <body>
+<div id="title-div">
+    <div id="div-title"> 个人物资借入情况表</div>
+</div>
+<table  class="table" id="orgMaterial">
+    <thead>
+    <tr>
+        <th>
+            物资名称
+        </th>
+        <th>
+            组织
+        </th>
+        <th>
+            数量
+        </th>
+        <th>
+            对方经办人
+        </th>
+        <th>
+            对方联系电话
+        </th>
+        <th>
+            借出时间
+        </th>
+        <th>
+            约定归还时间
+        </th>
+        <th>
+            归还确认人
+        </th>
+        <th>
+            状态
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<ul class="pagination" id="div-page">
+</ul>
 
 </body>
 </html>

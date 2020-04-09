@@ -53,6 +53,7 @@ public interface LendBorrowMaterialMapper extends ISqlMapper {
     int updateByPrimaryKey(LendBorrowMaterialDO record);
 
     /**
+     * 使用该方法时需要注意xml中只给了四个条件
      * 查询借入借出情况 根据传入信息 xml文件需要考虑索引问题
      * @param record 筛选条件
      * @return 结果集

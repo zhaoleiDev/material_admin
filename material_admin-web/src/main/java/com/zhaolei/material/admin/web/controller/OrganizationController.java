@@ -25,6 +25,10 @@ public class OrganizationController {
 
     @PostMapping("/registered")
     public Response registered(@RequestBody OrganizationVO organizationVO){
+        //一个用户只能一个组织的负责人
+        if(organizationService.getOrgByPrincipalStNum(organizationVO.getPrincipalStNum()) != null){
+            return Response.addInfo(ResponseEnum.PRINCIPAL_EXIT);
+        }
         OrganizationDO organizationDO = new OrganizationDO();
         BeanUtils.copyProperties(organizationVO,organizationDO);
         String token = DigestUtils.md5(organizationDO.getOrgName()+System.currentTimeMillis());

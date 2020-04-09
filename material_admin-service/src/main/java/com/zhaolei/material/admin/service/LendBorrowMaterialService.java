@@ -1,5 +1,6 @@
 package com.zhaolei.material.admin.service;
 
+import com.zhaolei.material.admin.domain.base.Page;
 import com.zhaolei.material.admin.domain.base.ServiceResponse;
 import com.zhaolei.material.admin.domain.dao.LendBorrowMaterialDO;
 import com.zhaolei.material.admin.domain.dao.UserDO;
@@ -29,14 +30,32 @@ public interface LendBorrowMaterialService {
     /**
      * 根据学号查看借出信息
      * @param lendStNum 借出者学号
+     * @param page 分页信息
      * @return 结果集
      */
-    List<LendBorrowMaterialDO> getLendMaterialByStNum(Integer lendStNum);
+    ServiceResponse getLendMaterialByStNum(String lendStNum, Page page);
 
     /**
      * 根据学号查看借入者信息
      * @param borrowNum 借入者学号
+     * @param page 分页信息
      * @return 结果集
      */
-    List<LendBorrowMaterialDO> getBorrowMaterialByStNum(Integer borrowNum);
+    ServiceResponse getBorrowMaterialByStNum(String borrowNum,Page page);
+
+    /**
+     * 获取组织的借出物资
+     * @param lendOrgName 组织名称
+     * @param page 分页信息
+     * @return 返回结果集
+     */
+    ServiceResponse getOrgLendMaterial(String lendOrgName,Page page);
+
+    /**
+     * 获取组织借入物资
+     * @param borrowOrgName 组织名称
+     * @param page 分页信息
+     * @return 返回结果集
+     */
+    ServiceResponse getOrgBorrowMaterial(String borrowOrgName,Page page);
 }

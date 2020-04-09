@@ -16,6 +16,13 @@ public class ConstantUtils {
      * 对外输出的密码
      */
     public static final String OUT_PASSWORD = "******";
+    /**
+     * cookie的键值
+     */
     public static final String COOKIE_NAME = "user";
+    /**
+     * cookie的键值
+     */
     public static final String COOKIE_LOGIN_TOKEN = "loginToken";
+
 }

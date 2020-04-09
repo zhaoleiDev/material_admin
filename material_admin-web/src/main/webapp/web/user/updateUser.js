@@ -45,6 +45,7 @@ function updateUser(){
         success:function(data){
             if(data.code === 200){
                 alert("修改成功");
+                window.location.href = "../total.html"
             }else if(data.code === 411){
                 window.location.href = loginUrl;
             }else{

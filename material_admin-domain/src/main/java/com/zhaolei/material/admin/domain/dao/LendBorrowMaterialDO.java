@@ -140,12 +140,12 @@ public class LendBorrowMaterialDO implements Serializable {
     }
 
 
-    public Date getOptationTime() {
+    public Date getOperationTime() {
         return operationTime;
     }
 
 
-    public void setOptationTime(Date operationTime) {
+    public void setOperationTime(Date operationTime) {
         this.operationTime = operationTime;
     }
 

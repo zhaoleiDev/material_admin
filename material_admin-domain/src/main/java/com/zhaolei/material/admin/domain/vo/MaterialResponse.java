@@ -1,5 +1,6 @@
 package com.zhaolei.material.admin.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.io.Serializable;
  * @author ZHAOLEI
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MaterialResponse implements Serializable {
     private static final long serialVersionUID = 5676645547310415340L;
     /**

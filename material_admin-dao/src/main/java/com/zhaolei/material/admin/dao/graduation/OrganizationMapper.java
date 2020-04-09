@@ -65,4 +65,11 @@ public interface OrganizationMapper extends ISqlMapper {
      * @return 名称列表
      */
     List<String> selectAllOrgName();
+
+    /**
+     * 根据负责人学号查询组织信息
+     * @param principalStNum 负责人学号
+     * @return 组织信息
+     */
+    OrganizationDO selectByPrincipalStNum(@Param("principalStNum") String principalStNum);
 }

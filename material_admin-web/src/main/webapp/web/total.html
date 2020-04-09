@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>目录页面</title>
+    <title>物资管理系统</title>
+    <link rel="stylesheet" href="total.css">
 </head>
 <body>
-欢迎使用物资管理系统
+<div id="div-title">
+    <div id="title">物资管理系统</div>
+</div>
+<div id="div1">
+    <div id="div-search" onclick="totalSearch()">物资查询</div>
+    <div id="div-org-material" onclick="totalOrgMaterial()">组织物资</div>
+    <div id="div-lend" onclick="totalLend()">我的借入</div>
+    <div id="div-borrow" onclick="totalBorrow()">我的借出</div>
+    <div id="div-org-lend" onclick="totalOrgLend()">组织借入</div>
+    <div id="div-org-borrow" onclick="totalOrgBorrow()">组织借出</div>
+    <div id="div-usr-info"  onclick="totalUserInfo()">我的    ></div>
+    <div class="menu">
+        <div class="s-menu" onclick="totalUpdateUser()">修改资料</div>
+        <div class="s-menu" onclick="totalLogout()">注销用户</div>
+    </div>
+    <div id="div-org-member" onclick="totalOrgMember()">组员信息</div>
+    <div id="div-operation-guid" onclick="totalOperationGuid()">操作指南</div>
+</div>
+<div id="div-explanation">
+    <div id="div-welcome">欢迎使用物资管理系统!!</div>
+    <div id="div-operation">使用请查看<a href="operationGuid.html">操作指南</a></div>
+    <div id="div-email">如有问题请邮件至:463508435@qq.com</div>
+    <div id="div-login-registered">
+        <div id="div-login"><a href="login.html">--去登录--</a></div>
+        <div id="div-registered"><a href="registered.html">--去注册--</a></div>
+        <div id="div-signOut"><a href="registered.html">--退出登录--</a></div>
+    </div>
+
+</div>
+<script src="/static/jquery-1.11.3.js"></script>
+<script src="total.js"></script>
 </body>
 </html>

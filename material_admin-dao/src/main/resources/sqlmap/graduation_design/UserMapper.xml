@@ -147,7 +147,7 @@
   select
   <include refid="Base_Column_List" />
   from m_user
-  where  student_num = #{stNum,jdbcType=VARCHAR} and status_info=1
+  where  student_num = #{stNum,jdbcType=VARCHAR}
 </select>
 
   <select id="getUserByOrg" resultMap="BaseResultMap">

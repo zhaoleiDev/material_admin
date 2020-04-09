@@ -176,19 +176,19 @@
     <include refid="Base_Column_List"></include>
     from lend_borrow_material
     <where>
-      <if test="lendStNum != null and testStNum != ''">
+      <if test="lendStNum != null and lendStNum != ''">
         lend_st_num = #{lendStNum,jdbcType=VARCHAR}
       </if>
-      <if test="lendStNum != null and testStNum != ''">
+      <if test="lendOrg != null and lendOrg != ''">
         and lend_org = #{lendOrg,jdbcType=VARCHAR}
       </if>
-      <if test="lendStNum != null and testStNum != ''">
+      <if test="borrowStNum != null and borrowStNum != ''">
         and borrow_st_num = #{borrowStNum,jdbcType=VARCHAR}
       </if>
-      <if test="lendStNum != null and testStNum != ''">
+      <if test="borrowOrg != null and borrowOrg != ''">
         and borrow_org = #{borrowOrg,jdbcType=VARCHAR}
       </if>
     </where>
-    order by promise_time
+    order by promise_time asc
   </select>
 </mapper>

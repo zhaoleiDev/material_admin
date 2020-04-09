@@ -32,6 +32,12 @@ public class Response<T> implements Serializable {
         res.setData(data);
         return res;
     }
+    public  static Response success(Object data,Page page){
+        Response res = setResponseEnum(ResponseEnum.SUCCESS);
+        res.setData(data);
+        res.setPage(page);
+        return res;
+    }
     public static Response success(){
         return setResponseEnum(ResponseEnum.SUCCESS);
     }
@@ -76,7 +82,7 @@ public class Response<T> implements Serializable {
         return code;
     }
 
-    private void setCode(int code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -84,7 +90,7 @@ public class Response<T> implements Serializable {
         return msg;
     }
 
-    private void setMsg(String msg) {
+    public void setMsg(String msg) {
         this.msg = msg;
     }
 
@@ -92,7 +98,7 @@ public class Response<T> implements Serializable {
         return data;
     }
 
-    private void setData(T data) {
+    public void setData(T data) {
         this.data = data;
     }
 

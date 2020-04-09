@@ -35,4 +35,12 @@ public interface OrganizationService {
      */
     List<String> getAllOrgName();
 
+    /**
+     * 根据负责人学号查询组织信息
+     * @param stNum 负责人学号
+     * @return 返回组织信息
+     */
+    OrganizationDO getOrgByPrincipalStNum(String stNum);
+
+
 }

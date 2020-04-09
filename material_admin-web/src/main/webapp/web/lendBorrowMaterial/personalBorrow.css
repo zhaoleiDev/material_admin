@@ -1,0 +1,19 @@
+table{
+    border-collapse:collapse;
+}
+thead tr{
+    background: antiquewhite;
+    border-bottom: solid;
+}
+#title-div{
+    height: 50px;
+    font-size: x-large;
+}
+#div-title{
+    margin-top: 10px;
+    margin-left: 700px;
+}
+#div-page{
+    position:relative;
+    left:48%;
+}

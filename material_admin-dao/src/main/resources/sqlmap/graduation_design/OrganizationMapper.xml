@@ -149,4 +149,10 @@
   <select id="selectAllOrgName" resultType="string">
     select org_name from organization where status_info=1
   </select>
+  <select id="selectByPrincipalStNum" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+     from organization
+     where principal_st_num = #{principalStNum,jdbcType=VARCHAR} limit 1
+  </select>
 </mapper>

@@ -51,4 +51,13 @@ public class Page implements Serializable {
     public void setTotal(int total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "pageNum=" + pageNum +
+                ", pageSize=" + pageSize +
+                ", total=" + total +
+                '}';
+    }
 }

@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDO> getOrgMember(String orgName) {
         //redis中key
-        String key = orgName+"userMember";
+        String key = "allMember"+orgName;
         String jsonStr = RedisUtils.get(key);
         if(jsonStr == null){
             List<UserDO> list = userMapper.getUserByOrg(orgName);
