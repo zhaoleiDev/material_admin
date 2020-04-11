@@ -85,6 +85,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isEffectiveUser(String stNum) {
+        return userMapper.selectEffectiveUserByStNum(stNum) != null;
+    }
+
+    @Override
     public UserDO getUerByStNum(String stNum) {
         if(stNum == null){
             return null;
@@ -94,12 +99,11 @@ public class UserServiceImpl implements UserService {
         if(jsonStr == null){
             UserDO userDO = userMapper.selectByStNum(stNum);
             String value = JSON.toJSONString(userDO);
-            //即使数据库值为null也下redis中set值
             RedisUtils.setRandomEx(stNum, value,TimeUtils.TEN_MINUTE_S);
+            log.info("getUerByStNum接口查询mysql耗时:{}",System.currentTimeMillis()-time);
             return userDO;
         }
-        log.info("getUerByStNum接口耗时:{}",System.currentTimeMillis()-time);
-        log.info("stNum:{},json串:{}",stNum,jsonStr);
+        log.info("getUerByStNum接口查询redis耗时:{}",System.currentTimeMillis()-time);
         return JSON.parseObject(jsonStr,UserDO.class);
     }
 

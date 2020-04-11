@@ -62,6 +62,10 @@ public class LendBorrowMaterialDO implements Serializable {
      * 确认归还者学号
      */
     private String ackRevertStNum;
+    /**
+     * 归还状态  0:未归还  1：已归还
+     */
+    private Integer statusInfo;
 
     /**
      * 备注
@@ -189,6 +193,14 @@ public class LendBorrowMaterialDO implements Serializable {
         this.memo = memo == null ? null : memo.trim();
     }
 
+    public Integer getStatusInfo() {
+        return statusInfo;
+    }
+
+    public void setStatusInfo(Integer statusInfo) {
+        this.statusInfo = statusInfo;
+    }
+
     @Override
     public String toString() {
         return "LendBorrowMaterialDO{" +
@@ -203,6 +215,7 @@ public class LendBorrowMaterialDO implements Serializable {
                 ", revertTime=" + revertTime +
                 ", promiseTime=" + promiseTime +
                 ", ackRevertStNum='" + ackRevertStNum + '\'' +
+                ", statusInfo=" + statusInfo +
                 ", memo='" + memo + '\'' +
                 '}';
     }

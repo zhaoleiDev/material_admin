@@ -6,6 +6,7 @@ import com.zhaolei.material.admin.domain.base.ResponseEnum;
 import com.zhaolei.material.admin.domain.dao.UserDO;
 import com.zhaolei.material.admin.domain.vo.UserResponse;
 import com.zhaolei.material.admin.domain.vo.UserVO;
+import com.zhaolei.material.admin.service.OrganizationService;
 import com.zhaolei.material.admin.service.UserService;
 import com.zhaolei.material.admin.common.tools.LoginContextUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -31,11 +32,13 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrganizationService organizationService;
 
     @RequestMapping("/login")
     public Response login(@RequestParam("stNum") String stNum, @RequestParam("pwd")String password, HttpServletRequest request, HttpServletResponse response){
         UserDO userDo = userService.getUerByStNum(stNum);
-        if(userDo == null){
+        if(userDo == null || userDo.getStatusInfo().equals(0)){
             return Response.addInfo(ResponseEnum.NOT_REGISTERED);
         }
         if(!userDo.getUserPassword().equals(password)){
@@ -73,6 +76,9 @@ public class UserController {
      */
     @RequestMapping("/logout")
     public Response logout(HttpServletRequest request,HttpServletResponse response){
+        if(organizationService.isPrincipalByStNum(LoginContextUtils.getStNum())){
+            return Response.addInfo(ResponseEnum.NOT_HANDOVER);
+        }
         //清除cookie信息
         Cookie[] cookies = request.getCookies();
         CookieUtils.clearCookie(response,cookies,ConstantUtils.COOKIE_LOGIN_TOKEN,ConstantUtils.COOKIE_NAME);
@@ -129,6 +135,19 @@ public class UserController {
             userResponseList.add(userResponse);
         }
         return Response.success(userResponseList);
+    }
+
+    @RequestMapping("/deleteMember")
+    public Response deleteMember(Integer id){
+        //检查是否是组织负责人，只有组织负责人才有删除成员的权限
+        String stNum = LoginContextUtils.getStNum();
+        if(!organizationService.isPrincipalByStNum(stNum)){
+            return Response.addInfo(ResponseEnum.NOT_PERMISSION);
+        }
+        if(userService.deleteById(id)){
+            return Response.success();
+        }
+        return Response.fail();
     }
 
 

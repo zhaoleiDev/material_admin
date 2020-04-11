@@ -58,7 +58,7 @@ public class LendBorrowMaterialController {
         lender.setOrganization(LoginContextUtils.getOrgName());
         //获取借入者信息
         UserDO borrower = userService.getUerByStNum(borrowStNum);
-        if(borrower == null){
+        if(borrower == null || borrower.getStatusInfo().equals(0)){
             return Response.addInfo(ResponseEnum.BORROWER_NOT_REGISTERED);
         }
         ServiceResponse serviceResponse = lendBorrowMaterialService.lend(lendBorrowMaterialDO,lender,borrower);

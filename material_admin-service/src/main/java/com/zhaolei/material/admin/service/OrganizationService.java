@@ -42,5 +42,12 @@ public interface OrganizationService {
      */
     OrganizationDO getOrgByPrincipalStNum(String stNum);
 
+    /**
+     * 根据学号判读是否是负责人
+     * @param stNum 学号
+     * @return true:是   false：不是
+     */
+    boolean isPrincipalByStNum(String stNum);
+
 
 }

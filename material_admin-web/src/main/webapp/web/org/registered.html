@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组织注册</title>
+    <link href="registered.css" rel="stylesheet">
+</head>
+<body>
+<div class="xiao-container">
+    <div class="xiao-register-box">
+        <div class="xiao-title-box">
+            <span>组织注册</span>
+        </div>
+        <form action="#" method="post">
+            <div class="xiao-orgName-box">
+                <span class="xiao-require">*</span>
+                <label for="orgName"> 组织名称</label>
+                <div class="xiao-orgName-input">
+                    <input type="text" id="orgName" name="orgName" placeholder="请输入组织名称 务必真实有效(必填项)" />
+                </div>
+            </div>
+
+            <div class="xiao-principalName-box">
+                <span class="xiao-require">*</span>
+                <label for="principalName">负责人姓名</label>
+                <div class="xiao-principalName-input">
+                    <input type="text" id="principalName" name="principalName" placeholder="请输入负责人的姓名(必填项)" />
+                </div>
+            </div>
+
+            <div class="xiao-principalStNum-box">
+                <span class="xiao-require">*</span>
+                <label for="principalStNum">负责人学号</label>
+                <div class="xiao-principalStNum-input">
+                    <input type="text" id="principalStNum" name="principalStNum" placeholder="请输入负责人学号(必填项)"/>
+                </div>
+            </div>
+
+            <div class="xiao-principalPhoneNum-box">
+                <span class="xiao-require">*</span>
+                <label for="principalPhoneNum">负责人联系电话</label>
+                <div class="xiao-principalPhoneNum-input">
+                    <input type="text" id="principalPhoneNum" name="principalPhoneNum" placeholder="请输入负责人联系电话(必填项)" />
+                </div>
+            </div>
+
+            <div class="xiao-principalCollege-box">
+                <span class="xiao-require">*</span>
+                <label for="principalCollege">负责人学院</label>
+                <div class="xiao-principalCollege-input">
+                    <input type="text" id="principalCollege" name="principalCollege" placeholder="请输入负责人学院(必填项)" />
+                </div>
+            </div>
+
+            <div class="xiao-submit-box" onclick="orgRegistered()">
+                注册
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="/static/jquery-1.11.3.js"></script>
+<script src="registered.js"></script>
+</body>
+
+</body>
+</html>

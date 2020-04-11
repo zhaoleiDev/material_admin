@@ -54,8 +54,7 @@ public class MaterialController {
         if(materialVO.getPrincipalStNum() == null){
             return Response.addInfo(ResponseEnum.ERROR_PARAM);
         }
-        UserDO principal = userService.getUerByStNum(materialVO.getPrincipalStNum());
-        if(principal == null){
+        if(!userService.isEffectiveUser(materialVO.getPrincipalStNum())){
             return Response.addInfo(ResponseEnum.PRINCIPAL_NOT_REGISTERED);
         }
         //图片处理
@@ -82,6 +81,11 @@ public class MaterialController {
     public Response update(MaterialVO materialVO,MultipartFile file){
         String stNum = LoginContextUtils.getStNum();
         log.info("学号为:{}的用户更新物资,信息:{}",stNum,JSON.toJSONString(materialVO));
+        //负责人检查
+        String principalStNum = materialVO.getPrincipalStNum();
+        if(principalStNum != null && !userService.isEffectiveUser(principalStNum)){
+            return Response.addInfo(ResponseEnum.PRINCIPAL_NOT_REGISTERED);
+        }
         MaterialDO materialDO = new MaterialDO();
         BeanUtils.copyProperties(materialVO,materialDO);
         if(file != null){

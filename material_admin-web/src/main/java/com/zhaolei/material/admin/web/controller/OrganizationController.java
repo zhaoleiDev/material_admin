@@ -26,12 +26,12 @@ public class OrganizationController {
     @PostMapping("/registered")
     public Response registered(@RequestBody OrganizationVO organizationVO){
         //一个用户只能一个组织的负责人
-        if(organizationService.getOrgByPrincipalStNum(organizationVO.getPrincipalStNum()) != null){
+        if(organizationService.isPrincipalByStNum(organizationVO.getPrincipalStNum())){
             return Response.addInfo(ResponseEnum.PRINCIPAL_EXIT);
         }
         OrganizationDO organizationDO = new OrganizationDO();
         BeanUtils.copyProperties(organizationVO,organizationDO);
-        String token = DigestUtils.md5(organizationDO.getOrgName()+System.currentTimeMillis());
+        String token = DigestUtils.md5(organizationDO.getOrgName()+System.currentTimeMillis()+organizationDO.getPrincipalStNum());
         organizationDO.setToken(token);
         organizationService.registered(organizationDO);
         return Response.success(token);
@@ -44,8 +44,10 @@ public class OrganizationController {
         }
         OrganizationDO organizationDO = new OrganizationDO();
         BeanUtils.copyProperties(organizationVO,organizationDO);
+        String token = DigestUtils.md5(organizationDO.getOrgName()+System.currentTimeMillis()+organizationDO.getPrincipalStNum());
+        organizationDO.setToken(token);
         if(organizationService.updateByOrgName(organizationDO)){
-            return Response.success();
+            return Response.success(token);
         }
         return Response.fail();
     }

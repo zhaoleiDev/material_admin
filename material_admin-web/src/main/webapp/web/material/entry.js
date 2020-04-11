@@ -39,7 +39,7 @@ function submit(){
         return;
     }
     if(materialName === null || totalNum === null || lendNum === null || principalStNum === null||
-        materialName === '' || totalNum === '' || lendNum === '' || principalStNum === '' || file === null){
+        materialName === '' || totalNum === '' || lendNum === '' || principalStNum === '' || file === null || file === undefined){
         alert("所有信息为必填项");
         return;
     }

@@ -81,12 +81,6 @@ public class LendBorrowMaterialResponse implements Serializable {
     private Date operationTime;
 
     /**
-     * 实际归还时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date revertTime;
-
-    /**
      * 约定归还时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -96,6 +90,11 @@ public class LendBorrowMaterialResponse implements Serializable {
      * 确认归还者学号
      */
     private String ackRevertStNum;
+
+    /**
+     * 归还状态  0:未归还  1：已归还
+     */
+    private Integer statusInfo;
 
     /**
      * 备注

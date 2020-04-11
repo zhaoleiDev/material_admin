@@ -45,5 +45,12 @@ public interface UserService {
      */
     List<UserDO> getOrgMember(String orgName);
 
+    /**
+     * 根据学号判断是否是生效的用户，因为删除用户时是逻辑删除
+     * @param stNum 学号
+     * @return 是 否
+     */
+    boolean isEffectiveUser(String stNum);
+
 
 }

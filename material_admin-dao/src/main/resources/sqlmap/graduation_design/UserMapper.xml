@@ -2,17 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhaolei.material.admin.dao.graduation.UserMapper">
   <resultMap id="BaseResultMap" type="userDO">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="organization" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="organization_token" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="student_num" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_password" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="phone_num" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="photo_info" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="status_info" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-    </constructor>
     <result column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
     <result column="organization" property="organization" javaType="java.lang.String" jdbcType="VARCHAR"/>
     <result column="organization_token" property="organizationToken" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -155,5 +144,9 @@
     <include refid="Base_Column_List" />
     from m_user
     where  organization = #{orgName,jdbcType=VARCHAR} and status_info=1
+  </select>
+
+  <select id="selectEffectiveUserByStNum" resultMap="BaseResultMap">
+    select id from m_user  where student_num = #{stNum,jdbcType=VARCHAR} and status_info = 1
   </select>
 </mapper>

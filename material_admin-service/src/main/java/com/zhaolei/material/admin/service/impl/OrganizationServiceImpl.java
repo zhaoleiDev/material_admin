@@ -60,5 +60,10 @@ public class OrganizationServiceImpl implements OrganizationService {
         return organizationMapper.selectByPrincipalStNum(stNum);
     }
 
+    @Override
+    public boolean isPrincipalByStNum(String stNum) {
+        return organizationMapper.selectByPrincipalStNum(stNum) != null;
+    }
+
 
 }

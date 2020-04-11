@@ -13,12 +13,13 @@
     <result column="revert_time" jdbcType="TIMESTAMP" property="revertTime" />
     <result column="promise_time" jdbcType="TIMESTAMP" property="promiseTime" />
     <result column="ack_revert_st_num" jdbcType="VARCHAR" property="ackRevertStNum" />
+    <result column="status_info" jdbcType="TINYINT" property="statusInfo" />
     <result column="memo" jdbcType="VARCHAR" property="memo" />
   </resultMap>
 
   <sql id="Base_Column_List">
     id, material_id, number, lend_st_num, lend_org, borrow_st_num, borrow_org, operation_time,
-    revert_time, promise_time, ack_revert_st_num, memo
+     promise_time, ack_revert_st_num, status_info,memo
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -24,7 +24,8 @@ public enum ResponseEnum {
     MATERIAL_NOT_EXIST(421,"物资不存在"),
     PRINCIPAL_NOT_REGISTERED(422,"负责人未注册"),
     FAIL_SEARCH(423,"查询失败"),
-    PRINCIPAL_EXIT(424,"该学号已是负责人")
+    PRINCIPAL_EXIT(424,"该用户已是负责人"),
+    NOT_HANDOVER(425,"感谢您为组织的付出！ 请先完成组织负责人交接工作")
     ;
     private int code;
     private String msg;

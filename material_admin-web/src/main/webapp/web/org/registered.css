@@ -12,7 +12,7 @@ input{
 }
 .xiao-register-box{
     position: relative;
-    height: 800px;
+    height: 580px;
     width: 700px;
     top: 50px;
     margin: 0 auto;
@@ -35,7 +35,7 @@ input{
     color: red;
     line-height: 50px;
 }
-.xiao-stNum-box{
+.xiao-orgName-box{
     position: absolute;
     width: 420px;
     height: 40px;
@@ -44,19 +44,19 @@ input{
     margin-left:80px;
     font-weight: 700;
 }
-.xiao-stNum-input{
+.xiao-orgName-input{
     display: inline-block;
-    margin-left: 28px;
+    margin-left: 40px;
     /*background: green;*/
 }
-#stNum{
+#orgName{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
     border-radius: 5px;
 }
 
-.xiao-userName-box{
+.xiao-principalName-box{
     position: absolute;
     width: 420px;
     height: 40px;
@@ -65,18 +65,18 @@ input{
     margin-left:80px;
     font-weight: 700;
 }
-.xiao-userName-input{
+.xiao-principalName-input{
     display: inline-block;
-    margin-left: 61px;
+    margin-left: 25px;
 }
 
-#userName{
+#principalName{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
     border-radius: 5px;
 }
-.xiao-orgName-box{
+.xiao-principalStNum-box{
     position: absolute;
     width: 420px;
     height: 40px;
@@ -85,36 +85,36 @@ input{
     margin-left:80px;
     font-weight: 700;
 }
-.xiao-orgName-input{
+.xiao-principalStNum-input{
     display: inline-block;
     margin-left: 28px;
 }
-#orgName{
+#principalStNum{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
     border-radius: 5px;
 }
-.xiao-orgToken-box{
+.xiao-principalPhoneNum-box{
     position: absolute;
-    width: 420px;
+    width: 500px;
     height: 40px;
     line-height: 40px;
     margin-top:340px;
     margin-left:80px;
     font-weight: 700;
 }
-.xiao-orgToken-input{
+.xiao-principalPhoneNum-input{
     display: inline-block;
-    margin-left: 28px;
+    margin-left: 0px;
 }
-#orgToken{
+#principalPhoneNum{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
     border-radius: 5px;
 }
-.xiao-phoneNum-box{
+.xiao-principalCollege-box{
     position: absolute;
     width: 420px;
     height: 40px;
@@ -124,51 +124,11 @@ input{
     font-weight: 700;
 }
 
-.xiao-phoneNum-input{
+.xiao-principalCollege-input{
     display: inline-block;
     margin-left: 28px;
 }
-#phoneNum{
-    height: 35px;
-    width: 290px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.xiao-userPassword-box{
-    position: absolute;
-    width: 420px;
-    height: 40px;
-    line-height: 40px;
-    margin-top:500px;
-    margin-left:80px;
-    font-weight: 700;
-}
-.xiao-userPassword-input{
-    display: inline-block;
-    margin-left: 61px;
-}
-#userPassword{
-    height: 35px;
-    width: 290px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.xiao-userPassword2-box{
-    position: absolute;
-    width: 420px;
-    height: 40px;
-    line-height: 40px;
-    margin-top:580px;
-    margin-left:80px;
-    font-weight: 700;
-}
-.xiao-userPassword2-input{
-    display: inline-block;
-    margin-left: 28px;
-}
-#userPassword2{
+#principalCollege{
     height: 35px;
     width: 290px;
     border: 2px solid #ccc;
@@ -181,17 +141,11 @@ input{
     width: 250px;
     height: 40px;
     line-height: 40px;
-    margin-top: 660px;
-    margin-left:180px;
+    margin-top: 500px;
+    margin-left:200px;
     border-radius: 5px;
     background: dodgerblue;
     color: white;
     text-align:center;
 }
-.xiao-goLogin-box{
-    position:absolute;
-    width: 150px;
-    height: 20px;
-    margin-top: 670px;
-    margin-left:465px;
-}
+

@@ -52,11 +52,18 @@ public interface UserMapper extends ISqlMapper {
     int updateByPrimaryKey(UserDO record);
 
     /**
-     * 根据学号查询用户信息
+     * 根据学号查询用户信息  包括已经注销的用户信息
      * @param stNum 学号
      * @return 用户信息
      */
     UserDO selectByStNum(String stNum);
+
+    /**
+     * 根据学号判读用户是否是未注销用户
+     * @param stNum 学号
+     * @return 结果集
+     */
+    UserDO selectEffectiveUserByStNum(String stNum);
 
     /**
      * 根据组织名称获取成员

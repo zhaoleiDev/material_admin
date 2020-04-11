@@ -30,7 +30,7 @@ function totalUserInfo(){
     }
 }
 function totalOrgMember(){
-    window.open("..");
+    window.open("../web/user/orgMember.html");
 }
 function totalOperationGuid(){
     window.open("../web/operationGuid.html");
@@ -47,6 +47,27 @@ function totalLogout(){
             if(data.code === 200){
                 alert("注销成功  感谢您的使用");
                 window.location.href = "../web/registered.html";
+            }else if(data.code === 411){
+                window.location.href = "../web/login.html";
+            }else{
+                alert(data.msg);
+            }
+        },
+        error:function(xhr){
+            console.log(JSON.stringify(xhr));
+            alert("程序错误");
+        }
+    });
+}
+
+function signOut(){
+    alert("确认退出登录");
+    $.ajax({
+        type:"GET",
+        url:"/user/signOut",
+        success:function(data){
+            if(data.code === 200){
+                window.location.href = "../web/login.html";
             }else if(data.code === 411){
                 window.location.href = "../web/login.html";
             }else{

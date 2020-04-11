@@ -11,6 +11,10 @@ import java.io.Serializable;
 public class UserResponse implements Serializable {
     private static final long serialVersionUID = -8168303550391636469L;
     /**
+     * 主键id
+     */
+    private Integer id;
+    /**
      * 学号
      */
     private String studentNum;

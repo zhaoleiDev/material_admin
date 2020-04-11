@@ -1,6 +1,7 @@
 package com.zhaolei.material.admin.web.interceptor;
 
 import com.zhaolei.material.admin.common.tools.CookieUtils;
+import com.zhaolei.material.admin.common.tools.LoginContextUtils;
 import com.zhaolei.material.admin.domain.exception.NoPermissionRunTimeException;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -27,7 +28,7 @@ public class OrgOperationInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String user = CookieUtils.getValue(request.getCookies(),"user");
+        String user = LoginContextUtils.getStNum();
         if(orgOprationSet.contains(user)){
             return true;
         }
