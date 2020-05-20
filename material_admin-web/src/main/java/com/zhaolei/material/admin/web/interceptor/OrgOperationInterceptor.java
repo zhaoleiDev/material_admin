@@ -1,6 +1,5 @@
 package com.zhaolei.material.admin.web.interceptor;
 
-import com.zhaolei.material.admin.common.tools.CookieUtils;
 import com.zhaolei.material.admin.common.tools.LoginContextUtils;
 import com.zhaolei.material.admin.domain.exception.NoPermissionRunTimeException;
 import org.springframework.web.servlet.HandlerInterceptor;

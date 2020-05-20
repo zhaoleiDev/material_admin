@@ -36,10 +36,10 @@ function deleteMember(memberId){
     $.ajax({
         type:"POST",
         url:"/user/deleteMember",
-        date:"id="+memberId,
+        data:"id="+memberId,
         success:function(data){
             if(data.code === 200){
-                alert("删除成功");
+                alert("删除成功,两分钟后生效");
             }else if(data.code === 411){
                 window.location.href = "../login.html";
             }else{

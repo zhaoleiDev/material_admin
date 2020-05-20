@@ -14,11 +14,6 @@
     <dependencies>
         <dependency>
             <groupId>com.zhaolei</groupId>
-            <artifactId>material_admin-domain</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zhaolei</groupId>
             <artifactId>material_admin-dao</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

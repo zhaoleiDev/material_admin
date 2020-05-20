@@ -64,7 +64,6 @@ public class LendBorrowMaterialServiceImpl implements LendBorrowMaterialService 
                 log.error("借出物资减库存时没有数据被更新:{}",JSON.toJSONString(lendMaterial));
                 return ServiceResponse.addInfo(ResponseEnum.FAIL_OPERATION);
             }
-
             //插入借入借出记录 若没有记录被更新需要提前触发回滚，不能直接返回，因为在此之前已经有了一个更新操作
             lendBorrowMaterialDO.setLendOrg(lender.getOrganization());
             lendBorrowMaterialDO.setLendStNum(lender.getStudentNum());

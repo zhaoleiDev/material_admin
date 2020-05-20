@@ -89,6 +89,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectEffectiveUserByStNum(stNum) != null;
     }
 
+
     @Override
     public UserDO getUerByStNum(String stNum) {
         if(stNum == null){
@@ -98,6 +99,9 @@ public class UserServiceImpl implements UserService {
         String jsonStr = RedisUtils.get(stNum);
         if(jsonStr == null){
             UserDO userDO = userMapper.selectByStNum(stNum);
+            if(userDO == null){
+                return null;
+            }
             String value = JSON.toJSONString(userDO);
             RedisUtils.setRandomEx(stNum, value,TimeUtils.TEN_MINUTE_S);
             log.info("getUerByStNum接口查询mysql耗时:{}",System.currentTimeMillis()-time);

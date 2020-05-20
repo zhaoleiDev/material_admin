@@ -37,19 +37,22 @@ public class UserController {
 
     @RequestMapping("/login")
     public Response login(@RequestParam("stNum") String stNum, @RequestParam("pwd")String password, HttpServletRequest request, HttpServletResponse response){
+        //查库
         UserDO userDo = userService.getUerByStNum(stNum);
-        if(userDo == null || userDo.getStatusInfo().equals(0)){
+      if(userDo == null || userDo.getStatusInfo().equals(0)){
             return Response.addInfo(ResponseEnum.NOT_REGISTERED);
         }
         if(!userDo.getUserPassword().equals(password)){
             return Response.addInfo(ResponseEnum.ERROR_PASSWORD);
         }
         //将学号与数据库id、组织、当前时间拼接在一起  学号===数据库id===组织===当前时间   当前时间用于保证loginToken是一个变化的值
-        String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId()+ConstantUtils.SPLIT_COOKIE_USER+userDo.getOrganization()+ConstantUtils.SPLIT_COOKIE_USER+Math.random();
+        String userStr = stNum+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getId()+ ConstantUtils.SPLIT_COOKIE_USER+userDo.getOrganization()+ ConstantUtils.SPLIT_COOKIE_USER+Math.random();
         String userBase64 = Base64Utils.encodeToString(userStr.getBytes());
         String token = DigestUtils.md5(userBase64);
-        Cookie loginToken = CookieUtils.createCookie(ConstantUtils.COOKIE_LOGIN_TOKEN,token,TimeUtils.ONE_HOURS_M,ConstantUtils.DEFAULT_COOKIE_PATH);
-        Cookie user = CookieUtils.createCookie(ConstantUtils.COOKIE_NAME,userBase64,TimeUtils.ONE_HOURS_M,ConstantUtils.DEFAULT_COOKIE_PATH);
+        //往cookie中添加loginToken
+        Cookie loginToken = CookieUtils.createCookie(ConstantUtils.COOKIE_LOGIN_TOKEN,token, TimeUtils.ONE_HOURS_M,ConstantUtils.DEFAULT_COOKIE_PATH);
+        //往cookie中添加user
+        Cookie user = CookieUtils.createCookie(ConstantUtils.COOKIE_NAME,userBase64, TimeUtils.ONE_HOURS_M,ConstantUtils.DEFAULT_COOKIE_PATH);
         response.addCookie(loginToken);
         response.addCookie(user);
         return Response.success();
@@ -144,6 +147,7 @@ public class UserController {
         if(!organizationService.isPrincipalByStNum(stNum)){
             return Response.addInfo(ResponseEnum.NOT_PERMISSION);
         }
+        log.info("用户学号:{} 删除用户主键id:{}",stNum,id);
         if(userService.deleteById(id)){
             return Response.success();
         }

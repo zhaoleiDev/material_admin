@@ -34,13 +34,13 @@ function submit(){
     var principalStNum = temp[0];
     //注意图片的接收方式
     var file = $("#photo")[0].files[0];
-    if(totalNum < lendNum){
-        alert("可借出数量不能大于物资总量");
-        return;
-    }
     if(materialName === null || totalNum === null || lendNum === null || principalStNum === null||
         materialName === '' || totalNum === '' || lendNum === '' || principalStNum === '' || file === null || file === undefined){
         alert("所有信息为必填项");
+        return;
+    }
+    if(parseInt(totalNum) < parseInt(lendNum)){
+        alert("可借出数量不能大于物资总量"+totalNum+":"+lendNum);
         return;
     }
     dataForm.append("materialName",materialName);
@@ -59,6 +59,7 @@ function submit(){
         success:function(data){
             if(data.code === 200){
                 alert("录入成功");
+
             }else if(data.code === 411){
                 window.location.href = "/web/login.html"
             }else{

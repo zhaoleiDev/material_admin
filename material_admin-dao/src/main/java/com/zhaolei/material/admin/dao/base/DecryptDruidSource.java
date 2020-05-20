@@ -33,8 +33,8 @@ public class DecryptDruidSource extends DruidDataSource {
     }
 
     public static void main(String[] args) throws Exception {
-        String str1 = ConfigTools.encrypt("");
-        String str2 = ConfigTools.encrypt("");
+        String str1 = ConfigTools.encrypt("root");
+        String str2 = ConfigTools.encrypt("123456");
         System.out.println(str1);
         System.out.println(str2);
     }

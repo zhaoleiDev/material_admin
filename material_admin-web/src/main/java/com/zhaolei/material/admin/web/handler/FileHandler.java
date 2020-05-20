@@ -21,7 +21,6 @@ public class FileHandler {
      */
     private static final String REAL_PATH = "D:\\unload\\";
     private static final String VM_PATH = "/onload/";
-
     /**
      * 将文件写入磁盘并且返回虚拟地址
      * @param file 文件
@@ -42,6 +41,5 @@ public class FileHandler {
             log.error("图片写入磁盘失败",e);
         }
         return VM_PATH+newFileName;
-
     }
 }
