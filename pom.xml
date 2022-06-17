@@ -30,7 +30,7 @@
         <jackson-version>2.10.1</jackson-version>
         <servlet-version>4.0.1</servlet-version>
         <jedis-version>3.2.0</jedis-version>
-        <fastjson-version>1.2.67</fastjson-version>
+        <fastjson-version>1.2.83</fastjson-version>
         <lombok-version>1.18.10</lombok-version>
         <pageHelper_vesion>5.1.11</pageHelper_vesion>
     </properties>
